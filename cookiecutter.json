@@ -1,0 +1,17 @@
+{
+    "project_name": "Project Name",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
+    "author_name": "Daniel Roy Greenfeld",
+    "email": "you@example.com",
+    "description": "A short description of the project.",
+    "domain_name": "example.com",
+    "version": "0.1.0",
+    "timezone": "UTC",
+    "language_code": "en-us",
+    "open_source_license": ["MIT", "BSD", "GPLv3", "Apache Software License 2.0", "Not open source"],
+    "use_travis": "y",
+    "use_sentry": "y",
+    "use_mailhog": "y",
+    "use_yandex_metrika": "y",
+    "use_ckeditor": ["Everywhere", "Backend", "Frontned", "Don't use"]
+}

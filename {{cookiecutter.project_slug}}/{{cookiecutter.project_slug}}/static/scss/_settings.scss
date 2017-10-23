@@ -1,0 +1,163 @@
+//  Foundation for Sites Settings
+//  -----------------------------
+
+@import '~foundation-sites/scss/util/util';
+
+// 1. Global
+// ---------
+
+$global-font-size: 100%;
+$global-width: rem-calc(1345);
+$global-lineheight: 1.2;
+$foundation-palette: (
+  main: #424770,
+  hover: #32325d,
+  link: #0f92df,
+  primary: #009fe6,
+  secondary: #a6b3b6,
+  header: #ececec,
+  button-main: #009ddb,
+  secondary2: #1bbe00,
+  success: #3adb76,
+  warning: #e8980f,
+  alert: #ff7249,
+  sidebar-bg: #80888a,
+  free: #33b600
+);
+
+$gray: (
+  gray1: #e8e8e8,
+  gray2: #d8d8d8,
+  gray3: #c8c8c8
+);
+
+$black: #000000;
+$white: #ffffff;
+$light-gray: #e6e6e6;
+$medium-gray: #dadada;
+$dark-gray: #141414;
+$red: #e14252;
+$yellow: #e0994c;
+$green: #24b47e;
+$select-color: #525f7f;
+$btn-color: #555abf;
+$background-color: #f1f5f9;
+
+$body-background: $white;
+$body-font-color: #424770;
+$body-font-family: 'Open Sans', sans-serif;
+$body-font-family-bold: 'Open Sans', sans-serif;
+$body-font-family-semibold: 'Open Sans', sans-serif;
+$body-antialiased: true;
+$global-margin: 1rem;
+$global-padding: 1rem;
+$global-weight-normal: normal;
+$global-weight-bold: bold;
+$global-radius: 0;
+$btn-radius: 4px;
+$global-text-direction: ltr;
+$global-flexbox: false;
+$print-transparent-backgrounds: true;
+
+@include add-foundation-colors;
+
+// 2. Breakpoints
+// --------------
+
+$breakpoints: (
+  small: 0,
+  medium: 640px,
+  large: 1024px,
+  xlarge: 1440px,
+  xxlarge: 1920px
+);
+$print-breakpoint: large;
+$breakpoint-classes: (small medium large);
+
+// 3. The Grid
+// -----------
+
+$grid-row-width: $global-width;
+$grid-column-count: 12;
+$grid-column-gutter: (
+  small: 20px,
+  medium: 30px
+);
+$grid-column-align-edge: true;
+$block-grid-max: 8;
+
+// 4. Base Typography
+// ------------------
+
+$header-font-family: $body-font-family-bold;
+$header-font-weight: $global-weight-normal;
+$header-font-style: normal;
+$font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
+$header-color: inherit;
+$header-lineheight: 1.2;
+$header-margin-bottom: 1rem;
+$header-styles: (
+  small: (
+    'h1': ('font-size': 24),
+    'h2': ('font-size': 20),
+    'h3': ('font-size': 19),
+    'h4': ('font-size': 18),
+    'h5': ('font-size': 17),
+    'h6': ('font-size': 16)
+  ),
+  medium: (
+    'h1': ('font-size': 44),
+    'h2': ('font-size': 30),
+    'h3': ('font-size': 24),
+    'h4': ('font-size': 20),
+    'h5': ('font-size': 18),
+    'h6': ('font-size': 16)
+  ),
+);
+
+$header-text-rendering: optimizeLegibility;
+$small-font-size: 80%;
+$header-small-font-color: $medium-gray;
+$paragraph-lineheight: 1.5;
+$paragraph-margin-bottom: rem-calc(20);
+$paragraph-text-rendering: optimizeLegibility;
+$code-color: $black;
+$code-font-family: $font-family-monospace;
+$code-font-weight: $global-weight-normal;
+$code-background: $light-gray;
+$code-border: 1px solid $medium-gray;
+$code-padding: rem-calc(2 5 1);
+$anchor-color: #0f92df;
+$anchor-color-hover: #424770;
+$anchor-text-decoration: none;
+$anchor-text-decoration-hover: underline;
+$hr-width: 100%;
+$hr-border: 1px solid map-get($gray, gray2);
+$hr-margin: rem-calc(20) auto;
+$list-lineheight: $paragraph-lineheight;
+$list-margin-bottom: $paragraph-margin-bottom;
+$list-style-type: disc;
+$list-style-position: outside;
+$list-side-margin: 1.25rem;
+$list-nested-side-margin: 1.25rem;
+$defnlist-margin-bottom: 1rem;
+$defnlist-term-weight: $global-weight-bold;
+$defnlist-term-margin-bottom: 0.3rem;
+$blockquote-color: $dark-gray;
+$blockquote-padding: rem-calc(9 20 0 19);
+$blockquote-border: 1px solid $medium-gray;
+$cite-font-size: rem-calc(13);
+$cite-color: $dark-gray;
+$cite-pseudo-content: '\2014 \0020';
+$keystroke-font: $font-family-monospace;
+$keystroke-color: $black;
+$keystroke-background: $light-gray;
+$keystroke-padding: rem-calc(2 4 0);
+$keystroke-radius: $global-radius;
+$abbr-underline: 1px dotted $black;
+
+// 5. Forms
+// ---------
+
+$input-border: 1px solid $medium-gray;
+$input-border-focus: 1px solid $primary-color;

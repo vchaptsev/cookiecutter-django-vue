@@ -1,0 +1,13 @@
+*.{{cookiecutter.domain_name}} {
+    redir https://{{cookiecutter.domain_name}}
+}
+
+{{cookiecutter.domain_name}} {
+    proxy / django:5000 {
+        transparent
+    }
+    limits 200mb
+    log stdout
+    errors stdout
+    gzip
+}

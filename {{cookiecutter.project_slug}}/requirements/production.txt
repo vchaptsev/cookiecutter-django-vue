@@ -1,0 +1,22 @@
+-r base.txt
+
+# WSGI Handler
+# ------------------------------------------------
+gevent==1.2.2
+gunicorn==19.7.1
+
+# Static and Media Storage
+# ------------------------------------------------
+boto3==1.4.7
+django-storages==1.6.5
+Collectfast==0.5.2
+
+# Email backends for Mailgun, Postmark, SendGrid and more
+# -------------------------------------------------------
+django-anymail==0.10
+
+{% if cookiecutter.use_sentry == 'y' -%}
+# Raven is the Sentry client
+# --------------------------
+raven==6.1.0
+{% endif %}
