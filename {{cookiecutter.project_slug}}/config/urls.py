@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^api/', include(api.urls, namespace='api')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
-    {% if cookiecutter.use_ckeditor == 'Both' or 'Backend' -%}url(r'^ckeditor/', include('ckeditor_uploader.urls')){% endif %}
+    {% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Backend" -%}url(r'^ckeditor/', include('ckeditor_uploader.urls')){% endif %}
 ]
 
 if settings.DEBUG:

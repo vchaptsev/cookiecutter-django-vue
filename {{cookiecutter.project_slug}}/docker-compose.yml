@@ -46,7 +46,7 @@ services:
       - "3000:3000"
 
 
-{% if cookiecutter.use_mailhog == 'y' -%}
+  {% if cookiecutter.use_mailhog == 'y' -%}
   mailhog:
     image: mailhog/mailhog
     ports:

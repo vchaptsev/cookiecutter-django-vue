@@ -46,7 +46,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',
     'django_extensions',
-    {% if cookiecutter.use_ckeditor == 'Both' or 'Backend' -%}
+    {% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Backend" -%}
     'ckeditor',
     'ckeditor_uploader'{% endif %}
 ]
@@ -250,7 +250,7 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 # Location of root django.contrib.admin URL
 ADMIN_URL = r'^admin/'
 
-{% if cookiecutter.use_ckeditor == 'Both' or 'Backend' -%}
+{% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Backend" -%}
 # CKeditor settings
 CKEDITOR_CONFIGS = {
     'default': {

@@ -1,14 +1,16 @@
 Cookiecutter Django-Vue
 =======================
 
-Powered by Cookiecutter_, based on CookiecutterDjango_.
+Powered by Cookiecutter_, based on `Cookiecutter Django`_.
+Dockerized.
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
-.. _CookiecutterDjango: https://github.com/pydanny/cookiecutter-django
+.. _`Cookiecutter Django`: https://github.com/pydanny/cookiecutter-django
 
 Features
 ---------
 
+* Docker_-based
 * For Django 1.11
 * Works with Python 3.6
 * 12-Factor_ based settings via django-environ_
@@ -47,13 +49,13 @@ Optional Integrations
 .. _Travis: https://travis-ci.org/
 .. _YandexMetrika: https://tech.yandex.ru/metrika/
 .. _CKeditor: https://ckeditor.com/
+.. _Docker: https://www.docker.com/
 
 Constraints
 -----------
 
-* Docker-based
 * Only maintained 3rd party libraries are used.
-* Uses PostgreSQL everywhere (9.6)
+* Uses PostgreSQL everywhere (9.6).
 * Environment variables for configuration.
 
 Usage

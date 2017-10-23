@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{% raw %}{{cookiecutter.project_name}}{% endraw %}</title>
+        <title>{{cookiecutter.project_name}}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="theme-color" content="#424770">
         <meta property="og:type" content="website">
@@ -38,5 +38,5 @@
     {% endif %}{% endraw %}{% endif %}
     {% raw %}<script src="{% if DEBUG %}http://localhost:3000{% endif %}{% static 'dist/build.js' %}" async></script>{% endraw %}
 
-    {% if cookiecutter.use_ckeditor == 'Both' or 'Frontend' -%}<script src="//cdn.ckeditor.com/4.7.3/basic/ckeditor.js" async></script>{% endif %}
+    {% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Frontend" -%}<script src="//cdn.ckeditor.com/4.7.3/basic/ckeditor.js" async></script>{% endif %}
 </html>
