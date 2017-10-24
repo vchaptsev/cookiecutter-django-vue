@@ -3,9 +3,9 @@ Test settings
 
 - Used to run tests fast on the continuous integration server and locally
 '''
+import tempfile
 
 from .base import *  # noqa
-import tempfile
 
 
 # DEBUG

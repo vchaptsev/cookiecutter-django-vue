@@ -1,6 +1,7 @@
 """
 1. Generates and saves random secret key
 2. Removes files conventional to opensource projects only
+3. Renames env.example to .env
 """
 import os
 import random
@@ -82,6 +83,11 @@ def make_secret_key(project_directory):
     set_secret_key(env_file)
 
 
+def rename_env_file(project_directory):
+    """Renames env file"""
+    os.rename(os.path.join(project_directory, 'env.example'), os.path.join(project_directory, '.env'))
+
+
 # Removes files needed for the GPLv3 licence if it isn't going to be used.
 if '{{ cookiecutter.open_source_license}}' != 'GPLv3':
     remove_copying_files()
@@ -92,3 +98,6 @@ if '{{ cookiecutter.open_source_license }}' == 'Not open source':
 
 # Generates and saves random secret key
 make_secret_key(PROJECT_DIRECTORY)
+
+# Renames env file
+rename_env_file(PROJECT_DIRECTORY)
