@@ -21,3 +21,5 @@ script: docker-compose run django py.test
 after_success: docker-compose down && fab deploy
 # Here you need to set up env for PRODUCTION_USER and PRODUCTION_PASSWORD.
 # docs: https://docs.travis-ci.com/user/environment-variables/#Encrypting-environment-variables
+# example: travis encrypt PRODUCTION_USER=user --add env.global
+#          travis encrypt PRODUCTION_PASSWORD=secret --add env.global
