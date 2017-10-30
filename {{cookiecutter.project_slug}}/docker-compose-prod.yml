@@ -22,6 +22,8 @@ services:
       - postgres
       - redis
     command: /gunicorn.sh
+    volumes:
+      - .:/app
     env_file: .env
 
 
@@ -45,6 +47,7 @@ services:
       context: .
       dockerfile: ./compose/webpack/Dockerfile
     command: npm run build
-    volumes_from:
-      - django
+    volumes:
+      - .:/app
+      - /app/node_modules
     env_file: .env

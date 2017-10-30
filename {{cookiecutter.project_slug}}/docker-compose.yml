@@ -39,8 +39,9 @@ services:
       dockerfile: ./compose/webpack/Dockerfile
     command: npm run dev
     restart: always
-    volumes_from:
-      - django
+    volumes:
+      - .:/app
+      - /app/node_modules
     ports:
       - "3000:3000"
 
