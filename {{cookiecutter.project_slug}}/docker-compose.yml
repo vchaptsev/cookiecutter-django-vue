@@ -24,8 +24,7 @@ services:
     depends_on:
       - postgres
       {% if cookiecutter.use_mailhog == 'y' -%}
-      - mailhog
-      {% endif %}
+      - mailhog{% endif %}
     environment:
       - POSTGRES_USER={{cookiecutter.project_slug}}
     volumes:

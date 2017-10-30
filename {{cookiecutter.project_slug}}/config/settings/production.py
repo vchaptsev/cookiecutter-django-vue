@@ -32,7 +32,7 @@ MIDDLEWARE = RAVEN_MIDDLEWARE + MIDDLEWARE
 
 # SITE CONFIGURATION
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[''])
-DOMAIN = env('DJANGO_DOMAIN', '{{cookiecutter.domain_name}}')
+DOMAIN = env('DJANGO_DOMAIN', default='{{cookiecutter.domain_name}}')
 
 # Gunicorn
 INSTALLED_APPS += ['gunicorn']
@@ -180,7 +180,3 @@ RAVEN_CONFIG = {
     'DSN': SENTRY_DSN
 }
 {% endif %}
-
-{% if cookiecutter.use_yandex_metrika == 'y' -%}
-# YandexMetrika
-YANDEX_METRIKA = env('YANDEX_METRIKA', default=None){% endif %}
