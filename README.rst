@@ -1,11 +1,18 @@
 Cookiecutter Django-Vue
 =======================
 
-Powered by Cookiecutter_, based on `Cookiecutter Django`_.
+Powered by Cookiecutter_, inspired by `Cookiecutter Django`_.
 Dockerized.
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`Cookiecutter Django`: https://github.com/pydanny/cookiecutter-django
+
+
+.. image:: https://preview.ibb.co/ghbksb/bf090ccb803136ea7d0ff3bc888619bde3dcf62b_vueanddjango.png
+   :name: cookiecutter-django-vue
+   :align: center
+   :alt: cookiecutter-django-vue
+   :target: https://github.com/vchaptsev/cookiecutter-django-vue
 
 Features
 ---------
@@ -61,7 +68,7 @@ Constraints
 Usage
 ------
 
-Let's pretend you want to create a Django project called "redditclone". Rather than using `startproject`
+Let's pretend you want to create a Django project called "my_awesome_website". Rather than using `startproject`
 and then editing the results to include your name, email, and various configuration issues that always get forgotten until the worst possible moment, get cookiecutter_ to do all the work.
 
 First, get Cookiecutter. Trust me, it's awesome::
@@ -109,3 +116,21 @@ Enter the project and take a look around::
 
     $ cd my_awesome_website/
     $ ls
+
+Now you can start project with `docker-compose`_::
+
+    $ docker-compose up --build
+
+For production you'll need to fill out .env file and use docker-compose-prod.yml file::
+
+    $ docker-compose -f docker-compose-prod.yml up --build -d
+
+
+If you want to use travis+fabric ssh deployment, you'll need to set up PRODUCTION_USER and PRODUCTION_PASSWORD `encrypted envs`_ to .travis.yml::
+
+    $ travis encrypt PRODUCTION_USER=user --add env.global
+    $ travis encrypt PRODUCTION_PASSWORD=secret --add env.global
+
+
+.. _`encrypted envs`: https://docs.travis-ci.com/user/environment-variables/#Encrypting-environment-variables
+.. _`docker-compose`: https://docs.docker.com/compose/
