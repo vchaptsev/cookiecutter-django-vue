@@ -1,5 +1,6 @@
 var webpack = require('webpack')
 var S3Plugin = require('webpack-s3-plugin')
+var CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
     entry: './{{cookiecutter.project_slug}}/static/main.js',
@@ -74,6 +75,7 @@ if (process.env.NODE_ENV === 'production') {
             sourceMap: true,
             compress: {warnings: false}
         }),
+        new CompressionPlugin({asset: '[path].gz'}),
         new S3Plugin({
             include: /.*\js/,
             s3Options: {
@@ -83,7 +85,9 @@ if (process.env.NODE_ENV === 'production') {
             },
             s3UploadOptions: {
                 Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
-                CacheControl: 'max-age=604800, no-transform, public'
+                Expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)),
+                CacheControl: 'max-age=604800, no-transform, public',
+                ContentEncoding: 'gzip'
             },
             basePath: 'static/dist/'
         })

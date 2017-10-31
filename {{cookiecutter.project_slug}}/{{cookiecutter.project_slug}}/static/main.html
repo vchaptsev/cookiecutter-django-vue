@@ -36,7 +36,7 @@
         <script type="text/javascript">var metrika = new Ya.Metrika({id: {{ yandex_metrika }}})</script>
         <script type="text/javascript">var DEBUG = {{ DEBUG | lower }}</script>
     {% endif %}{% endraw %}{% endif %}
-    {% raw %}<script src="{% if DEBUG %}http://localhost:3000{% endif %}{% static 'dist/build.js' %}" async></script>{% endraw %}
+    {% raw %}<script src="{% if DEBUG %}http://localhost:3000{% static 'dist/build.js' %}{% else %}{% static 'dist/build.js.gz' %}{% endif %}" async></script>{% endraw %}
 
     {% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Frontend" -%}<script src="//cdn.ckeditor.com/4.7.3/basic/ckeditor.js" async></script>{% endif %}
 </html>

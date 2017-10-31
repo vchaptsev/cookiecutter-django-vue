@@ -54,10 +54,11 @@ AWS_QUERYSTRING_AUTH = False
 AWS_IS_GZIPPED = True
 
 # AWS cache settings
-AWS_EXPIRY = 60 * 60 * 24 * 7
-AWS_HEADERS = {
+AWS_EXPIRY = timedelta(days=30).total_seconds()
+
+AWS_S3_OBJECT_PARAMETERS = {
     'Expires': (datetime.now() + timedelta(days=30)).strftime('%a, %d %b %Y 00:00:00 GMT'),
-    'Cache-Control': 'max-age={}, s-maxage={}, must-revalidate'.format(AWS_EXPIRY, AWS_EXPIRY)
+    'CacheControl': 'max-age=%d, s-maxage=%d, must-revalidate'.format(AWS_EXPIRY, AWS_EXPIRY)
 }
 
 from storages.backends.s3boto3 import S3Boto3Storage
