@@ -6,46 +6,61 @@ volumes:
   caddy: {}
 
 services:
+  django:{% if cookiecutter.use_celery == 'y' %} &django{% endif %}
+    build:
+      context: .
+      dockerfile: ./compose/production/django/Dockerfile
+    depends_on:
+      - postgres
+      - redis
+    env_file: .env
+    command: /gunicorn.sh
+
   postgres:
-    build: ./compose/postgres
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - postgres_backup:/backups
     env_file: .env
 
-
-  django:
+  caddy:
     build:
       context: .
-      dockerfile: ./compose/django/Dockerfile
-    depends_on:
-      - postgres
-      - redis
-    command: /gunicorn.sh
-    volumes:
-      - .:/app
-    env_file: .env
-
-
-  caddy:
-    build: ./compose/caddy
+      dockerfile: ./compose/production/caddy/Dockerfile
     depends_on:
       - django
-    ports:
-      - "80:80"
-      - "443:443"
     volumes:
       - caddy:/root/.caddy
-
+    env_file: .env
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
 
   redis:
     image: redis:3.0
 
+{% if cookiecutter.use_celery == 'y' %}
+  celeryworker:
+    <<: *django
+    depends_on:
+     - postgres
+     - redis
+    command: /start-celeryworker.sh
+
+  celerybeat:
+    <<: *django
+    depends_on:
+      - postgres
+      - redis
+    command: /start-celerybeat.sh
+{% endif %}
 
   webpack:
     build:
       context: .
-      dockerfile: ./compose/webpack/Dockerfile
+      dockerfile: ./compose/production/webpack/Dockerfile
     command: npm run build
     volumes:
       - .:/app

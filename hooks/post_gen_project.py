@@ -5,6 +5,7 @@
 """
 import os
 import random
+import shutil
 import string
 
 # Get the root project directory
@@ -88,6 +89,16 @@ def rename_env_file(project_directory):
     os.rename(os.path.join(project_directory, 'env.example'), os.path.join(project_directory, '.env'))
 
 
+def remove_task_app(project_directory):
+    """Removes the taskapp if celery isn't going to be used"""
+    # Determine the local_setting_file_location
+    task_app_location = os.path.join(
+        PROJECT_DIRECTORY,
+        '{{ cookiecutter.project_slug }}/taskapp'
+    )
+    shutil.rmtree(task_app_location)
+
+
 # Removes files needed for the GPLv3 licence if it isn't going to be used.
 if '{{ cookiecutter.license}}' != 'GPLv3':
     remove_copying_files()
@@ -95,6 +106,10 @@ if '{{ cookiecutter.license}}' != 'GPLv3':
 # Remove files conventional to opensource projects only.
 if '{{ cookiecutter.license }}' == 'Not open source':
     remove_open_source_files()
+
+# Removes the taskapp if celery isn't going to be used
+if '{{ cookiecutter.use_celery }}'.lower() == 'n':
+    remove_task_app(PROJECT_DIRECTORY)
 
 # Generates and saves random secret key
 make_secret_key(PROJECT_DIRECTORY)

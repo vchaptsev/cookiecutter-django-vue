@@ -6,6 +6,10 @@ import {store} from './store'
 import Meta from 'vue-meta'
 
 import VueProgressBar from 'vue-progressbar'
+{% if cookiecutter.use_vue_material == 'y' %} 
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.css'
+{% endif %}
 
 import Main from './Main.vue'
 
@@ -36,6 +40,9 @@ axios.interceptors.response.use((response) => {
 
 Vue.use(Meta)
 Vue.use(VueProgressBar)
+{% if cookiecutter.use_vue_material == 'y' %} 
+Vue.use(VueMaterial)
+{% endif %}
 
 new Vue({
     el: '#main',

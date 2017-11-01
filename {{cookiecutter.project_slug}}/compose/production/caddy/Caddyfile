@@ -1,4 +1,4 @@
-*.{{cookiecutter.domain}} {
+www.{{cookiecutter.domain}} {
     redir https://{{cookiecutter.domain}}
 }
 
@@ -6,7 +6,6 @@
     proxy / django:5000 {
         transparent
     }
-    limits 200mb
     log stdout
     errors stdout
     gzip

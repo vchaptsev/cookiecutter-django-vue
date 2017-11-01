@@ -11,11 +11,15 @@
     "version": "0.1",
     "license": ["MIT", "BSD", "GPLv3", "Apache Software License 2.0", "Not open source"],
     "use_ckeditor": ["Everywhere", "Backend", "Frontned", "Don't use"],
+
     "======================= DevOps =======================": " ",
+    "postgres": ["9.6", "9.5", "9.4", "9.3", "9.2"],
+    "use_celery": "y",
     "use_travis": "y",
     "use_sentry": "y",
     "use_mailhog": "y",
 
     "====================== FRONT-END =====================": " ",
-    "use_yandex_metrika": "y"
+    "use_yandex_metrika": "y",
+    "use_vue_material": "n"
 }
