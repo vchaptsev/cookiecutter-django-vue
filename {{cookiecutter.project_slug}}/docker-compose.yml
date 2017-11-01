@@ -64,7 +64,7 @@ services:
   webpack:
     build:
       context: .
-      dockerfile: ./compose/webpack/local/Dockerfile
+      dockerfile: ./compose/local/webpack/Dockerfile
     command: npm run dev
     restart: always
     volumes:

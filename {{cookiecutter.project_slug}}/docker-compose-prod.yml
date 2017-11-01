@@ -59,7 +59,7 @@ services:
   webpack:
     build:
       context: .
-      dockerfile: ./compose/webpack/production/Dockerfile
+      dockerfile: ./compose/production/webpack/Dockerfile
     command: npm run build
     volumes:
       - .:/app
