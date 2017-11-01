@@ -89,8 +89,8 @@ Answer the prompts with your own desired options. For example::
     project_name [Project Name]: Website
     project_slug [website]: website
     domain [website.com]: website.com
-    description [A short description of the project.]: Just my website!
-    author [Daniel Roy Greenfeld]: Your Nmame
+    description [A short description of the project.]: My awesome website
+    author [Daniel Roy Greenfeld]: Your Name
     email [admin@website.com]: admin@website.com
     version [0.1]: 0.1
     Select license:
@@ -107,16 +107,20 @@ Answer the prompts with your own desired options. For example::
     4 - Don't use
     Choose from 1, 2, 3, 4 [1]: 1
     ======================= DevOps ======================= [ ]:
+    Select postgres:
+    1 - 9.6
+    2 - 9.5
+    3 - 9.4
+    4 - 9.3
+    5 - 9.2
+    Choose from 1, 2, 3, 4, 5 [1]: 1
+    use_celery [y]: y
     use_travis [y]: y
     use_sentry [y]: y
     use_mailhog [y]: y
     ====================== FRONT-END ===================== [ ]:
     use_yandex_metrika [y]: y
-
-Enter the project and take a look around::
-
-    $ cd my_awesome_website/
-    $ ls
+    use_vue_material [n]: n
 
 Now you can start project with `docker-compose`_::
 
@@ -127,7 +131,7 @@ For production you'll need to fill out .env file and use docker-compose-prod.yml
     $ docker-compose -f docker-compose-prod.yml up --build -d
 
 
-If you want to use travis+fabric ssh deployment, you'll need to set up PRODUCTION_USER and PRODUCTION_PASSWORD `encrypted envs`_ to .travis.yml::
+If you want to use travis + fabric ssh deployment, you'll need to set up PRODUCTION_USER and PRODUCTION_PASSWORD `encrypted envs`_ to .travis.yml::
 
     $ travis encrypt PRODUCTION_USER=user --add env.global
     $ travis encrypt PRODUCTION_PASSWORD=secret --add env.global
