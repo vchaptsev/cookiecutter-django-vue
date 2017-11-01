@@ -120,6 +120,7 @@ Answer the prompts with your own desired options. For example::
     use_mailhog [y]: y
     ====================== FRONT-END ===================== [ ]:
     use_yandex_metrika [y]: y
+    use_progressbar [n]: n
     use_vue_material [n]: n
 
 Now you can start project with `docker-compose`_::

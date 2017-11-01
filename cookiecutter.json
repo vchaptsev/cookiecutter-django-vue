@@ -21,5 +21,6 @@
 
     "====================== FRONT-END =====================": " ",
     "use_yandex_metrika": "y",
+    "use_progressbar": "n",
     "use_vue_material": "n"
 }
