@@ -34,6 +34,10 @@ pytz==2017.2
 django-redis==4.8.0
 redis>=2.10.5
 
+{% if cookiecutter.use_celery == "y" %}
+celery==3.1.25
+{% endif %}
+
 # Requests
 requests==2.11.1
 

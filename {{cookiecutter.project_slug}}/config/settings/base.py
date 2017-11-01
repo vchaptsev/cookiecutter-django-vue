@@ -246,7 +246,16 @@ LOGIN_URL = '/login'
 
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
-
+{% if cookiecutter.use_celery == 'y' %}
+########## CELERY
+INSTALLED_APPS += ['{{cookiecutter.project_slug}}.taskapp.celery.CeleryConfig']
+CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='django://')
+if CELERY_BROKER_URL == 'django://':
+    CELERY_RESULT_BACKEND = 'redis://'
+else:
+    CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+########## END CELERY
+{% endif %}
 # Location of root django.contrib.admin URL
 ADMIN_URL = r'^admin/'
 
