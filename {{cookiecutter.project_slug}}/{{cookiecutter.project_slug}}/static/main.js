@@ -14,8 +14,7 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 {% if cookiecutter.use_yandex_metrika == 'y' -%}
 router.afterEach ((to, from, next) => {
-    // YandexMetrika hit
-    if (!DEBUG) {metrika.hit(to.path)}
+    if (!DEBUG) {metrika.hit(to.path)} // YandexMetrika hit
 })
 {% endif %}
 

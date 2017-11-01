@@ -32,7 +32,7 @@ MIDDLEWARE = RAVEN_MIDDLEWARE + MIDDLEWARE
 
 # SITE CONFIGURATION
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[''])
-DOMAIN = env('DJANGO_DOMAIN', default='{{cookiecutter.domain_name}}')
+DOMAIN = env('DJANGO_DOMAIN', default='{{cookiecutter.domain}}')
 
 # Gunicorn
 INSTALLED_APPS += ['gunicorn']
@@ -78,7 +78,7 @@ INSTALLED_APPS = ['collectfast'] + INSTALLED_APPS
 
 # EMAIL
 # ------------------------------------------------------------------------------
-DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL', default='{{cookiecutter.project_name}} <noreply@{{cookiecutter.domain_name}}>')
+DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL', default='{{cookiecutter.project_name}} <noreply@{{cookiecutter.domain}}>')
 EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[{{cookiecutter.project_name}}]')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 

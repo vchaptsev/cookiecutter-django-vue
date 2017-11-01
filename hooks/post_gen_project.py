@@ -89,11 +89,11 @@ def rename_env_file(project_directory):
 
 
 # Removes files needed for the GPLv3 licence if it isn't going to be used.
-if '{{ cookiecutter.open_source_license}}' != 'GPLv3':
+if '{{ cookiecutter.license}}' != 'GPLv3':
     remove_copying_files()
 
 # Remove files conventional to opensource projects only.
-if '{{ cookiecutter.open_source_license }}' == 'Not open source':
+if '{{ cookiecutter.license }}' == 'Not open source':
     remove_open_source_files()
 
 # Generates and saves random secret key

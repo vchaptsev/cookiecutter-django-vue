@@ -73,7 +73,7 @@ and then editing the results to include your name, email, and various configurat
 
 First, get Cookiecutter. Trust me, it's awesome::
 
-    $ pip install "cookiecutter"
+    $ pip install cookiecutter
 
 Now run it against this repo::
 
@@ -85,32 +85,33 @@ You'll be prompted for some values. Provide them, then a Django project will be 
 
 Answer the prompts with your own desired options. For example::
 
-    project_name [Project Name]: My Awesome Website
-    project_slug [my_awesome_website]: my_awesome_website
-    author_name [Daniel Roy Greenfeld]: Your Name
-    email [you@example.com]: author@myawesomewebsite.com
-    description [A short description of the project.]: Description
-    domain_name [example.com]: myawesomewebsite.com
-    version [0.1.0]: 1.0
-    timezone [UTC]: UTC
-    language_code [en-us]: en-us
-    Select open_source_license:
+    ======================= GENERAL ====================== [ ]:
+    project_name [Project Name]: Website
+    project_slug [website]: website
+    domain [website.com]: website.com
+    description [A short description of the project.]: Just my website!
+    author [Daniel Roy Greenfeld]: Your Nmame
+    email [admin@website.com]: admin@website.com
+    version [0.1]: 0.1
+    Select license:
     1 - MIT
     2 - BSD
     3 - GPLv3
     4 - Apache Software License 2.0
     5 - Not open source
     Choose from 1, 2, 3, 4, 5 [1]: 1
-    use_travis [y]: y
-    use_sentry [y]: y
-    use_mailhog [y]: y
-    use_yandex_metrika [y]: y
     Select use_ckeditor:
     1 - Everywhere
     2 - Backend
     3 - Frontned
     4 - Don't use
     Choose from 1, 2, 3, 4 [1]: 1
+    ======================= DevOps ======================= [ ]:
+    use_travis [y]: y
+    use_sentry [y]: y
+    use_mailhog [y]: y
+    ====================== FRONT-END ===================== [ ]:
+    use_yandex_metrika [y]: y
 
 Enter the project and take a look around::
 

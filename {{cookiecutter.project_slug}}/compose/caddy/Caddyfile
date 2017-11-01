@@ -1,8 +1,8 @@
-*.{{cookiecutter.domain_name}} {
-    redir https://{{cookiecutter.domain_name}}
+*.{{cookiecutter.domain}} {
+    redir https://{{cookiecutter.domain}}
 }
 
-{{cookiecutter.domain_name}} {
+{{cookiecutter.domain}} {
     proxy / django:5000 {
         transparent
     }

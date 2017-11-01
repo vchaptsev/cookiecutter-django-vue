@@ -2,9 +2,9 @@
   "name": "{{cookiecutter.project_slug}}",
   "description": "{{cookiecutter.description}}",
   "version": "{{cookiecutter.version}}",
-  "author": "{{cookiecutter.author_name}}",
-  {% if cookiecutter.open_source_license != 'Not open source' -%}"license": "{{cookiecutter.open_source_license}}",{% endif %}
-  {% if cookiecutter.open_source_license == 'Not open source' -%}"private": true,{% endif %}
+  "author": "{{cookiecutter.author}}",
+  {% if cookiecutter.license != 'Not open source' -%}"license": "{{cookiecutter.license}}",{% endif %}
+  {% if cookiecutter.license == 'Not open source' -%}"private": true,{% endif %}
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"

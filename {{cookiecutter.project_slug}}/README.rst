@@ -7,7 +7,7 @@
      :target: https://github.com/vchaptsev/cookiecutter-django-vue/
      :alt: Built with Cookiecutter Django Vue
 
-{% if cookiecutter.open_source_license != "Not open source" %}
+{% if cookiecutter.license != "Not open source" %}
 
-:License: {{cookiecutter.open_source_license}}
+:License: {{cookiecutter.license}}
 {% endif %}

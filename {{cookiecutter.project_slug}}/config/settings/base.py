@@ -93,7 +93,7 @@ EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.s
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [
-    ("""{{cookiecutter.author_name}}""", '{{cookiecutter.email}}')
+    ("""{{cookiecutter.author}}""", '{{cookiecutter.email}}')
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
@@ -114,10 +114,10 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = '{{ cookiecutter.timezone }}'
+TIME_ZONE = 'UTC'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = '{{cookiecutter.language_code}}'
+LANGUAGE_CODE = 'en-us'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
 USE_I18N = True
