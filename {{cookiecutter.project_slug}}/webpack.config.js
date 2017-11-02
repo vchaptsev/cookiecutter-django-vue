@@ -2,6 +2,7 @@ var webpack = require('webpack')
 var S3Plugin = require('webpack-s3-plugin')
 var CompressionPlugin = require('compression-webpack-plugin')
 
+// ==================== MAIN SETTINGS ====================
 module.exports = {
     entry: './{{cookiecutter.project_slug}}/static/main.js',
     module: {
@@ -32,24 +33,10 @@ module.exports = {
     },
     resolve: {
         alias: {'vue$': 'vue/dist/vue.esm.js'}
-    },
-    devServer: {
-        historyApiFallback: true,
-        noInfo: true,
-        host: '0.0.0.0',
-        port: 3000,
-        hot: true,
-        filename: 'bundle.js',
-        headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:8000',
-            'Access-Control-Allow-Headers': 'X-Requested-With'
-        }
-    },
-    performance: {hints: false},
-    watchOptions: {poll: 1000},
-    devtool: '#eval-source-map'
+    }
 }
 
+// ==================== PRODUCTION SETTINGS ====================
 if (process.env.NODE_ENV === 'production') {
     module.exports.devtool = '#source-map'
     module.exports.output = {
@@ -57,17 +44,17 @@ if (process.env.NODE_ENV === 'production') {
         publicPath: 'http://localhost:3000/static/dist/',
         filename: 'build.js'
     },
-    module.exports.module.rules = (module.exports.module.rules || []).concat([
+    module.exports.module.rules.push(
         {
             enforce: 'pre',
             test: /\.vue$/,
-            loader: 'string-replace-loader',
+            loader: 'string-replace-loader', 
             query: {
                 search: new RegExp('/static/', 'g'),
                 replace: 'https://' + process.env.AWS_STORAGE_BUCKET_NAME + '.s3.' + process.env.AWS_STORAGE_BUCKET_REGION + '.amazonaws.com/static/'
             }
         }
-    ]),
+    ),
     module.exports.plugins = [
         new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
         new webpack.LoaderOptionsPlugin({minimize: true}),
@@ -92,15 +79,33 @@ if (process.env.NODE_ENV === 'production') {
             basePath: 'static/dist/'
         })
     ]
-} else {
+}
+
+// ==================== DEVELOPMENT SETTINGS ====================
+if (process.env.NODE_ENV === 'development') {
+    module.exports.devtool = '#eval-source-map',
+    module.exports.output = {
+        path: '/app/{{cookiecutter.project_slug}}/static/dist/',
+        publicPath: 'http://localhost:3000/static/dist/',
+        filename: 'build.js'
+    },
     module.exports.plugins = [
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.LoaderOptionsPlugin({vue: {loader: {js: 'babel-loader'}}})
     ],
-    module.exports.output = {
-        path: '/app/{{cookiecutter.project_slug}}/static/dist/',
-        publicPath: 'http://localhost:3000/static/dist/',
-        filename: 'build.js'
-    }
+    module.exports.devServer = {
+        historyApiFallback: true,
+        noInfo: true,
+        host: '0.0.0.0',
+        port: 3000,
+        hot: true,
+        filename: 'bundle.js',
+        headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:8000',
+            'Access-Control-Allow-Headers': 'X-Requested-With'
+        }
+    },
+    module.exports.performance = {hints: false},
+    module.exports.watchOptions = {poll: 1000}
 }

@@ -18,18 +18,17 @@ Features
 ---------
 
 * Docker_-based
-* For Django 1.11
+* For Django_ 1.11
+* Vue_ framework
 * Works with Python 3.6
-* 12-Factor_ based settings via django-environ_
-* Optimized development and production settings
-* Comes with custom user model ready to go
+* PostgreSQL_ database
+* Caddy_ server with LetsEncrypt_ integration
+
+* Optimized development and production settings (12-Factor_ based via django-environ_)
 * Send emails via Anymail_ (using Mailgun_ by default, but switchable)
 * Static & media storages using Amazon S3
-* Run tests with py.test
 * Webpack_ for builds and hot-development-server
-* Yarn_ for js-dependencies
-* Vue_ ready
-* Caddy_ server with LetsEncrypt_ integration
+* Yarn_ for npm-dependencies
 
 Optional Integrations
 ---------------------
@@ -42,6 +41,7 @@ Optional Integrations
 * Integration with YandexMetrika_ for web-analytics
 * Integration with CKeditor_ for rich text editing
 
+.. _Django: https://www.djangoproject.com/
 .. _django-environ: https://github.com/joke2k/django-environ
 .. _12-Factor: http://12factor.net/
 .. _Mailgun: http://www.mailgun.com/
@@ -57,13 +57,7 @@ Optional Integrations
 .. _YandexMetrika: https://tech.yandex.ru/metrika/
 .. _CKeditor: https://ckeditor.com/
 .. _Docker: https://www.docker.com/
-
-Constraints
------------
-
-* Only maintained 3rd party libraries are used.
-* Uses PostgreSQL everywhere (9.6).
-* Environment variables for configuration.
+.. _PostgreSQL: https://www.postgresql.org/
 
 Usage
 ------
