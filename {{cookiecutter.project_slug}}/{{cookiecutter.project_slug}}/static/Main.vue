@@ -1,7 +1,7 @@
 <template lang="html">
     <div>
         <router-view></router-view>
-        <vue-progress-bar></vue-progress-bar>
+        {% if cookiecutter.use_progressbar == 'y' -%}<vue-progress-bar></vue-progress-bar>{% endif -%}
     </div>
 </template>
 

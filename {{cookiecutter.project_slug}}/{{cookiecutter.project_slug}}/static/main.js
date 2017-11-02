@@ -5,13 +5,10 @@ import router from './router'
 import {store} from './store'
 import Meta from 'vue-meta'
 
-{% if cookiecutter.use_progressbar == 'y' -%}
-import VueProgressBar from 'vue-progressbar'
-{% endif %}
-{% if cookiecutter.use_vue_material == 'y' -%}
+{% if cookiecutter.use_progressbar == 'y' %}import VueProgressBar from 'vue-progressbar'{% endif %}
+{% if cookiecutter.use_vue_material == 'y' %}
 import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.css'
-{% endif %}
+import 'vue-material/dist/vue-material.css'{% endif %}
 
 import Main from './Main.vue'
 
@@ -21,8 +18,7 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 {% if cookiecutter.use_yandex_metrika == 'y' -%}
 router.afterEach ((to, from, next) => {
     if (!DEBUG) {metrika.hit(to.path)} // YandexMetrika hit
-})
-{% endif %}
+}){% endif %}
 
 {% if cookiecutter.use_progressbar == 'y' -%}
 // Progress bar interceptors
@@ -40,15 +36,11 @@ axios.interceptors.response.use((response) => {
     router.app.$Progress.fail()
     return Promise.reject(error)
 })
-{% endif %}
+{% endif -%}
 
 Vue.use(Meta)
-{% if cookiecutter.use_progressbar == 'y' -%}
-Vue.use(VueProgressBar)
-{% endif %}
-{% if cookiecutter.use_vue_material == 'y' %}
-Vue.use(VueMaterial)
-{% endif %}
+{% if cookiecutter.use_progressbar == 'y' %}Vue.use(VueProgressBar){% endif %}
+{% if cookiecutter.use_vue_material == 'y' %}Vue.use(VueMaterial){% endif %}
 
 new Vue({
     el: '#main',

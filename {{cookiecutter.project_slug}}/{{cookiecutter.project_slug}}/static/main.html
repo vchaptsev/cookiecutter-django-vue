@@ -13,13 +13,15 @@
         <meta property="og:description" content="{{cookiecutter.description}}">
         <meta name="description" content="{{cookiecutter.description}}">
 
-        {% raw %}<!-- favicons for all devices. recommended generator: https://realfavicongenerator.net/ -->
+        {% raw -%}
+        <!-- favicons for all devices. recommended generator: https://realfavicongenerator.net/ -->
         <meta property="og:image" content="{% static 'images/favicons/apple-touch-icon.png' %}">
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}">
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicons/favicon-32x32.png' %}">
         <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicons/favicon-16x16.png' %}">
         <link rel="manifest" href="{% static 'images/favicons/manifest.json' %}">
-        <link rel="mask-icon" href="{% static 'images/favicons/safari-pinned-tab.svg' %}" color="#5bbad5">{% endraw %}
+        <link rel="mask-icon" href="{% static 'images/favicons/safari-pinned-tab.svg' %}" color="#5bbad5">
+        {% endraw -%}
 
         <meta name="apple-mobile-web-app-title" content="{{cookiecutter.project_name}}">
         <meta name="application-name" content="{{cookiecutter.project_name}}">
@@ -34,9 +36,8 @@
     {% if cookiecutter.use_yandex_metrika == 'y' -%}{% raw %}{% if yandex_metrika %}
         <script src="https://mc.yandex.ru/metrika/watch.js"></script>
         <script type="text/javascript">var metrika = new Ya.Metrika({id: {{ yandex_metrika }}})</script>
-        <script type="text/javascript">var DEBUG = {{ DEBUG | lower }}</script>
     {% endif %}{% endraw %}{% endif %}
+    {% raw %}<script type="text/javascript">var DEBUG = {{ DEBUG | lower }}</script>{% endraw %}
     {% raw %}<script src="{% if DEBUG %}http://localhost:3000{% static 'dist/build.js' %}{% else %}{% static 'dist/build.js.gz' %}{% endif %}" async></script>{% endraw %}
-
-    {% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Frontend" -%}<script src="//cdn.ckeditor.com/4.7.3/basic/ckeditor.js" async></script>{% endif %}
+    {% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Frontend" -%}<script src="https://cdn.ckeditor.com/4.7.3/basic/ckeditor.js" async></script>{% endif %}
 </html>

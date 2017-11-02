@@ -8,7 +8,7 @@
     "author": "Daniel Roy Greenfeld",
     "email": "admin@{{ cookiecutter.domain }}",
 
-    "version": "0.1",
+    "version": "0.1.0",
     "license": ["MIT", "BSD", "GPLv3", "Apache Software License 2.0", "Not open source"],
     "use_ckeditor": ["Everywhere", "Backend", "Frontned", "Don't use"],
 
