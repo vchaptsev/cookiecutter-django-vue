@@ -6,6 +6,11 @@ Production Configurations
 {% if cookiecutter.use_sentry == 'y' -%}
 - Use Sentry for error logging
 {% endif %}
+{% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}
+- Use Amazon S3 for static and media files
+{% else %}
+- Use whitenoise for static, Amazon S3 for media files
+{% endif %}
 """
 
 import logging
@@ -61,19 +66,28 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=%d, s-maxage=%d, must-revalidate'.format(AWS_EXPIRY, AWS_EXPIRY)
 }
 
+{% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}
 from storages.backends.s3boto3 import S3Boto3Storage
 StaticRootS3BotoStorage = lambda: S3Boto3Storage(location='static')
 MediaRootS3BotoStorage = lambda: S3Boto3Storage(location='media')
 DEFAULT_FILE_STORAGE = 'config.settings.production.MediaRootS3BotoStorage'
 MEDIA_URL = 'https://{}.s3.{}.amazonaws.com/media/'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
+{% else %}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = 'https://{}.s3.{}.amazonaws.com/'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
+{%- endif %}
 
 # Static Assets
 # ------------------------
+{% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}
 STATIC_URL = 'https://{}.s3.{}.amazonaws.com/static/'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
 STATICFILES_STORAGE = 'config.settings.production.StaticRootS3BotoStorage'
-# See: https://github.com/antonagestam/collectfast
+
 AWS_PRELOAD_METADATA = True
 INSTALLED_APPS = ['collectfast'] + INSTALLED_APPS
+{% else %}
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+{% endif %}
 
 
 # EMAIL

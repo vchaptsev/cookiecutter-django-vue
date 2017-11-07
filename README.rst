@@ -26,7 +26,7 @@ Features
 
 * Optimized development and production settings (12-Factor_ based via django-environ_)
 * Send emails via Anymail_ (using Mailgun_ by default, but switchable)
-* Static & media storages using Amazon S3
+* Static & media files with AmazonS3 or Whitenoise_ + AmazonS3
 * Webpack_ for builds and hot-development-server
 * Yarn_ for npm-dependencies
 
@@ -58,6 +58,7 @@ Optional Integrations
 .. _CKeditor: https://ckeditor.com/
 .. _Docker: https://www.docker.com/
 .. _PostgreSQL: https://www.postgresql.org/
+.. _Whitenoise: http://whitenoise.evans.io/
 
 Usage
 ------
@@ -112,6 +113,10 @@ Answer the prompts with your own desired options. For example::
     use_travis [y]: y
     use_sentry [y]: y
     use_mailhog [y]: y
+    Select static_and_media:
+    1 - Whitenoise for static, Amazon S3 for media
+    2 - Amazon S3 for static and media
+    Choose from 1, 2 [1]: 1
     ====================== FRONT-END ===================== [ ]:
     use_yandex_metrika [y]: y
     use_progressbar [n]: n
