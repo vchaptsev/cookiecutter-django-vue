@@ -25,7 +25,10 @@
 
         <meta name="apple-mobile-web-app-title" content="{{cookiecutter.project_name}}">
         <meta name="application-name" content="{{cookiecutter.project_name}}">
-
+        {% if cookiecutter.use_vue_material == 'y' %}
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+        <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+        {% endif %}
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
 

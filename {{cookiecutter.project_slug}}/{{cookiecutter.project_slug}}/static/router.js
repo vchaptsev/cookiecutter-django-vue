@@ -1,7 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import NotFoundComponent from '/components/NotFoundComponent.vue'
 
-const routes = []
+const routes = [
+	{ 
+		path: '*', 
+		component: NotFoundComponent 
+	}
+]
 
 Vue.use(VueRouter)
 const router = new VueRouter({
