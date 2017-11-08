@@ -16,7 +16,6 @@ services:
       - .:/app
     environment:
       - POSTGRES_USER={{cookiecutter.project_slug}}
-      - USE_DOCKER=yes
     ports:
       - "8000:8000"
     command: /start.sh
@@ -30,12 +29,14 @@ services:
       - postgres_backup_local:/backups
     environment:
       - POSTGRES_USER={{cookiecutter.project_slug}}
+
 {% if cookiecutter.use_mailhog == 'y' %}
   mailhog:
     image: mailhog/mailhog:v1.0.0
     ports:
       - "8025:8025"
 {% endif %}
+
 {% if cookiecutter.use_celery == 'y' %}
   redis:
     image: redis:3.0
@@ -72,4 +73,3 @@ services:
       - /app/node_modules
     ports:
       - "3000:3000"
-

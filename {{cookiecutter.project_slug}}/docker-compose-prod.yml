@@ -40,6 +40,7 @@ services:
 
   redis:
     image: redis:3.0
+
 {% if cookiecutter.use_celery == 'y' %}
   celeryworker:
     <<: *django

@@ -1,20 +1,27 @@
 {
+    "======================= GENERAL ======================": " ",
     "project_name": "Project Name",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
-    "author_name": "Daniel Roy Greenfeld",
-    "email": "you@example.com",
+    "domain": "{{ cookiecutter.project_slug }}.com",
     "description": "A short description of the project.",
-    "domain_name": "example.com",
+
+    "author": "Daniel Roy Greenfeld",
+    "email": "admin@{{ cookiecutter.domain }}",
+
     "version": "0.1.0",
-    "timezone": "UTC",
-    "language_code": "en-us",
-    "use_celery": "n",
-    "use_vue_material": "n",
-    "postgresql_version": ["9.6", "9.5", "9.4", "9.3", "9.2"],
-    "open_source_license": ["MIT", "BSD", "GPLv3", "Apache Software License 2.0", "Not open source"],
+    "license": ["MIT", "BSD", "GPLv3", "Apache Software License 2.0", "Not open source"],
+    "use_ckeditor": ["Everywhere", "Backend", "Frontned", "Don't use"],
+
+    "======================= DevOps =======================": " ",
+    "postgres": ["9.6", "9.5", "9.4", "9.3", "9.2"],
+    "use_celery": "y",
     "use_travis": "y",
     "use_sentry": "y",
     "use_mailhog": "y",
+    "static_and_media": ["Whitenoise for static, Amazon S3 for media", "Amazon S3 for static and media"],
+
+    "====================== FRONT-END =====================": " ",
     "use_yandex_metrika": "y",
-    "use_ckeditor": ["Everywhere", "Backend", "Frontned", "Don't use"]
+    "use_progressbar": "n",
+    "use_vue_material": "n"
 }

@@ -18,18 +18,17 @@ Features
 ---------
 
 * Docker_-based
-* For Django 1.11
+* For Django_ 1.11
+* Vue_ framework
 * Works with Python 3.6
-* 12-Factor_ based settings via django-environ_
-* Optimized development and production settings
-* Comes with custom user model ready to go
-* Send emails via Anymail_ (using Mailgun_ by default, but switchable)
-* Static & media storages using Amazon S3
-* Run tests with py.test
-* Webpack_ for builds and hot-development-server
-* Yarn_ for js-dependencies
-* Vue_ ready
+* PostgreSQL_ database
 * Caddy_ server with LetsEncrypt_ integration
+
+* Optimized development and production settings (12-Factor_ based via django-environ_)
+* Send emails via Anymail_ (using Mailgun_ by default, but switchable)
+* Static & media files with AmazonS3 or Whitenoise_ + AmazonS3
+* Webpack_ for builds and hot-development-server
+* Yarn_ for npm-dependencies
 
 Optional Integrations
 ---------------------
@@ -42,6 +41,7 @@ Optional Integrations
 * Integration with YandexMetrika_ for web-analytics
 * Integration with CKeditor_ for rich text editing
 
+.. _Django: https://www.djangoproject.com/
 .. _django-environ: https://github.com/joke2k/django-environ
 .. _12-Factor: http://12factor.net/
 .. _Mailgun: http://www.mailgun.com/
@@ -57,13 +57,8 @@ Optional Integrations
 .. _YandexMetrika: https://tech.yandex.ru/metrika/
 .. _CKeditor: https://ckeditor.com/
 .. _Docker: https://www.docker.com/
-
-Constraints
------------
-
-* Only maintained 3rd party libraries are used.
-* Uses PostgreSQL everywhere (9.6).
-* Environment variables for configuration.
+.. _PostgreSQL: https://www.postgresql.org/
+.. _Whitenoise: http://whitenoise.evans.io/
 
 Usage
 ------
@@ -73,7 +68,7 @@ and then editing the results to include your name, email, and various configurat
 
 First, get Cookiecutter. Trust me, it's awesome::
 
-    $ pip install "cookiecutter"
+    $ pip install cookiecutter
 
 Now run it against this repo::
 
@@ -85,37 +80,47 @@ You'll be prompted for some values. Provide them, then a Django project will be 
 
 Answer the prompts with your own desired options. For example::
 
-    project_name [Project Name]: My Awesome Website
-    project_slug [my_awesome_website]: my_awesome_website
-    author_name [Daniel Roy Greenfeld]: Your Name
-    email [you@example.com]: author@myawesomewebsite.com
-    description [A short description of the project.]: Description
-    domain_name [example.com]: myawesomewebsite.com
-    version [0.1.0]: 1.0
-    timezone [UTC]: UTC
-    language_code [en-us]: en-us
-    Select open_source_license:
+    ======================= GENERAL ====================== [ ]:
+    project_name [Project Name]: Website
+    project_slug [website]: website
+    domain [website.com]: website.com
+    description [A short description of the project.]: My awesome website
+    author [Daniel Roy Greenfeld]: Your Name
+    email [admin@website.com]: admin@website.com
+    version [0.1]: 0.1
+    Select license:
     1 - MIT
     2 - BSD
     3 - GPLv3
     4 - Apache Software License 2.0
     5 - Not open source
     Choose from 1, 2, 3, 4, 5 [1]: 1
-    use_travis [y]: y
-    use_sentry [y]: y
-    use_mailhog [y]: y
-    use_yandex_metrika [y]: y
     Select use_ckeditor:
     1 - Everywhere
     2 - Backend
     3 - Frontned
     4 - Don't use
     Choose from 1, 2, 3, 4 [1]: 1
-
-Enter the project and take a look around::
-
-    $ cd my_awesome_website/
-    $ ls
+    ======================= DevOps ======================= [ ]:
+    Select postgres:
+    1 - 9.6
+    2 - 9.5
+    3 - 9.4
+    4 - 9.3
+    5 - 9.2
+    Choose from 1, 2, 3, 4, 5 [1]: 1
+    use_celery [y]: y
+    use_travis [y]: y
+    use_sentry [y]: y
+    use_mailhog [y]: y
+    Select static_and_media:
+    1 - Whitenoise for static, Amazon S3 for media
+    2 - Amazon S3 for static and media
+    Choose from 1, 2 [1]: 1
+    ====================== FRONT-END ===================== [ ]:
+    use_yandex_metrika [y]: y
+    use_progressbar [n]: n
+    use_vue_material [n]: n
 
 Now you can start project with `docker-compose`_::
 
@@ -126,7 +131,7 @@ For production you'll need to fill out .env file and use docker-compose-prod.yml
     $ docker-compose -f docker-compose-prod.yml up --build -d
 
 
-If you want to use travis+fabric ssh deployment, you'll need to set up PRODUCTION_USER and PRODUCTION_PASSWORD `encrypted envs`_ to .travis.yml::
+If you want to use travis + fabric ssh deployment, you'll need to set up PRODUCTION_USER and PRODUCTION_PASSWORD `encrypted envs`_ to .travis.yml::
 
     $ travis encrypt PRODUCTION_USER=user --add env.global
     $ travis encrypt PRODUCTION_PASSWORD=secret --add env.global

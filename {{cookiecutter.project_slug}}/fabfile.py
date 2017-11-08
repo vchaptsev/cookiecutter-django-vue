@@ -3,7 +3,7 @@ from fabric.api import env, cd, run, hosts, local
 
 
 {% if cookiecutter.use_travis == 'y' -%}
-@hosts('root@{{cookiecutter.domain_name}}')
+@hosts('root@{{cookiecutter.domain}}')
 def deploy():
     """
     Travis is using this function to deploy project
