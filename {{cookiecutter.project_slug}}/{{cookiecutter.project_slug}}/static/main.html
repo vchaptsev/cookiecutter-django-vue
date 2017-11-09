@@ -41,6 +41,6 @@
         <script type="text/javascript">var metrika = new Ya.Metrika({id: {{ yandex_metrika }}})</script>
     {% endif %}{% endraw %}{% endif %}
     {% raw %}<script type="text/javascript">var DEBUG = {{ DEBUG | lower }}</script>{% endraw %}
-    {% raw %}<script src="{% if DEBUG %}http://localhost:3000{% static 'dist/build.js' %}{% else %}{% static 'dist/build.js.gz' %}{% endif %}" async></script>{% endraw %}
+    <script src="{% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}{% raw %}{% if DEBUG %}http://localhost:3000{% static 'dist/build.js' %}{% else %}{% static 'dist/build.js.gz' %}{% endif %}{% endraw %}{% else %}{% raw %}{% if DEBUG %}http://localhost:3000{% endif %}{% static 'dist/build.js' %}{% endraw %}{% endif %}" async></script>
     {% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Frontend" -%}<script src="https://cdn.ckeditor.com/4.7.3/basic/ckeditor.js" async></script>{% endif %}
 </html>

@@ -1,6 +1,8 @@
 var webpack = require('webpack')
-var S3Plugin = require('webpack-s3-plugin')
 var CompressionPlugin = require('compression-webpack-plugin')
+{% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}
+var S3Plugin = require('webpack-s3-plugin')
+{% endif %}
 
 // ==================== MAIN SETTINGS ====================
 module.exports = {
@@ -40,21 +42,23 @@ module.exports = {
 if (process.env.NODE_ENV === 'production') {
     module.exports.devtool = '#source-map'
     module.exports.output = {
-        path: '/',
+        {% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}path: '/',{% else %}path: '/app/staticfiles/dist/',{% endif %}
         publicPath: 'http://localhost:3000/static/dist/',
         filename: 'build.js'
     },
+    {% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}
     module.exports.module.rules.push(
         {
             enforce: 'pre',
             test: /\.vue$/,
-            loader: 'string-replace-loader', 
+            loader: 'string-replace-loader',
             query: {
                 search: new RegExp('/static/', 'g'),
                 replace: 'https://' + process.env.AWS_STORAGE_BUCKET_NAME + '.s3.' + process.env.AWS_STORAGE_BUCKET_REGION + '.amazonaws.com/static/'
             }
         }
     ),
+    {% endif %}
     module.exports.plugins = [
         new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
         new webpack.LoaderOptionsPlugin({minimize: true}),
@@ -63,6 +67,7 @@ if (process.env.NODE_ENV === 'production') {
             compress: {warnings: false}
         }),
         new CompressionPlugin({asset: '[path].gz'}),
+        {% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}
         new S3Plugin({
             include: /.*\js/,
             s3Options: {
@@ -78,6 +83,7 @@ if (process.env.NODE_ENV === 'production') {
             },
             basePath: 'static/dist/'
         })
+        {% endif %}
     ]
 }
 

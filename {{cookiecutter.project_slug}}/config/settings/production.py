@@ -26,6 +26,13 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+{% if cookiecutter.static_and_media != 'Amazon S3 for static and media' -%}
+# Use Whitenoise to serve static files
+# See: https://whitenoise.readthedocs.io/
+WHITENOISE_MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware']
+MIDDLEWARE = WHITENOISE_MIDDLEWARE + MIDDLEWARE
+{% endif %}
+
 {% if cookiecutter.use_sentry == 'y' -%}
 # raven sentry client
 # See https://docs.sentry.io/clients/python/integrations/django/
@@ -72,23 +79,17 @@ StaticRootS3BotoStorage = lambda: S3Boto3Storage(location='static')
 MediaRootS3BotoStorage = lambda: S3Boto3Storage(location='media')
 DEFAULT_FILE_STORAGE = 'config.settings.production.MediaRootS3BotoStorage'
 MEDIA_URL = 'https://{}.s3.{}.amazonaws.com/media/'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
-{% else %}
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = 'https://{}.s3.{}.amazonaws.com/'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
-{%- endif %}
 
 # Static Assets
 # ------------------------
-{% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}
 STATIC_URL = 'https://{}.s3.{}.amazonaws.com/static/'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
 STATICFILES_STORAGE = 'config.settings.production.StaticRootS3BotoStorage'
-
 AWS_PRELOAD_METADATA = True
 INSTALLED_APPS = ['collectfast'] + INSTALLED_APPS
 {% else %}
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-{% endif %}
-
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = 'https://{}.s3.{}.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
+{%- endif %}
 
 # EMAIL
 # ------------------------------------------------------------------------------
