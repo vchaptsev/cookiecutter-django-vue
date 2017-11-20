@@ -15,8 +15,7 @@ def deploy():
     with cd(project_root):
         run("git pull")
         run("docker-compose -f docker-compose-prod.yml up -d --no-deps --build")
-        run("docker-compose -f docker-compose-prod.yml run django python manage.py collectstatic --no-input --verbosity 0"){% endif %}
-
+        run("docker system prune -af"){% endif %}
 
 def up():
     """
