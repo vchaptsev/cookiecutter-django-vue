@@ -1,6 +1,6 @@
-www.{{cookiecutter.domain}} {
+{% if cookiecutter.domain.split('.') | length == 2 %}www.{{cookiecutter.domain}} {
     redir https://{{cookiecutter.domain}}
-}
+}{% endif %}
 
 {{cookiecutter.domain}} {
     proxy / django:5000 {
