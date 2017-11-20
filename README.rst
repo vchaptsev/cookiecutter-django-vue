@@ -118,7 +118,10 @@ Answer the prompts with your own desired options. For example::
     2 - Amazon S3 for static and media
     Choose from 1, 2 [1]: 1
     ====================== FRONT-END ===================== [ ]:
-    use_yandex_metrika [y]: y
+    Select analytics:
+    1 - Google Analytics
+    2 - Yandex metrika
+    3 - None
     use_progressbar [n]: n
     use_vue_material [n]: n
 

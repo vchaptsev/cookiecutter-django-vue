@@ -24,6 +24,7 @@
     "sass-loader": "^6.0.6",
     {% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}"string-replace-loader": "^1.3.0",{% endif -%}
     "vue": "^2.3.4",
+    {% if cookiecutter.analytics == "Google Analytics" -%}"vue-analytics": "^5.3.2",{% endif -%}
     {% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Frontend" -%}"vue-ckeditor2": "^1.15.0",{% endif -%}
     {% if cookiecutter.use_vue_material == 'y' -%}"vue-material": "^0.8.1",{% endif -%}
     "vue-loader": "^12.2.1",

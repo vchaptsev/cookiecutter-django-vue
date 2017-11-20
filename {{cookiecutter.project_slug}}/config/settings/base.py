@@ -285,6 +285,10 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 # Mailgun api
 DJANGO_MAILGUN_API_PUB = env('DJANGO_MAILGUN_API_PUB', default=None)
 
-{% if cookiecutter.use_yandex_metrika == 'y' -%}
-# YandexMetrika
+{% if cookiecutter.analytics == 'Google Analytics' -%}
+# Google Analytics
+GOOGLE_ANALYTICS = env('GOOGLE_ANALYTICS', default=None){% endif %}
+
+{% if cookiecutter.analytics == 'Yandex Metrika' -%}
+# Yandex Metrika
 YANDEX_METRIKA = env('YANDEX_METRIKA', default=None){% endif %}

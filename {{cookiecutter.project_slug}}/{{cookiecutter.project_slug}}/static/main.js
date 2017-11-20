@@ -4,6 +4,8 @@ import axios from 'axios'
 import router from './router'
 import {store} from './store'
 import Meta from 'vue-meta'
+{% if cookiecutter.analytics == 'Google Analytics' -%}
+import VueAnalytics from 'vue-analytics'{% endif %}
 
 {% if cookiecutter.use_progressbar == 'y' %}import VueProgressBar from 'vue-progressbar'{% endif %}
 {% if cookiecutter.use_vue_material == 'y' %}
@@ -15,10 +17,12 @@ import Main from './Main.vue'
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
-{% if cookiecutter.use_yandex_metrika == 'y' -%}
+{% if cookiecutter.analytics == 'Yandex Metrika' -%}
 router.afterEach ((to, from, next) => {
     if (!DEBUG) {metrika.hit(to.path)} // YandexMetrika hit
 }){% endif %}
+
+{% if cookiecutter.analytics == 'Google Analytics' -%}Vue.use(VueAnalytics, {id: analytics, router}){% endif %}
 
 {% if cookiecutter.use_progressbar == 'y' -%}
 // Progress bar interceptors

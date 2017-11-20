@@ -36,7 +36,8 @@
         <div id="main"></div>
     </body>
 
-    {% if cookiecutter.use_yandex_metrika == 'y' -%}{% raw %}{% if yandex_metrika %}
+    {% if cookiecutter.analytics == 'Google Analytics' -%}{% raw %}{% if google_analytics %}<script type="text/javascript">var analytics = {{ google_analytics }}</script>{% endif %}{% endraw %}{% endif %}
+    {% if cookiecutter.analytics == 'Yandex Metrika' -%}{% raw %}{% if yandex_metrika %}
         <script src="https://mc.yandex.ru/metrika/watch.js"></script>
         <script type="text/javascript">var metrika = new Ya.Metrika({id: {{ yandex_metrika }}})</script>
     {% endif %}{% endraw %}{% endif %}
