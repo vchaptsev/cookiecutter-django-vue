@@ -38,7 +38,7 @@ Optional Integrations
 * Integration with Travis_ for CI
 * Integration with Sentry_ for error logging
 * Integration with MailHog_ for local email testing
-* Integration with YandexMetrika_ for web-analytics
+* Integration with `Google Analytics` or `Yandex Metrika`_ for web-analytics
 * Integration with CKeditor_ for rich text editing
 
 .. _Django: https://www.djangoproject.com/
@@ -54,7 +54,8 @@ Optional Integrations
 .. _Yarn: https://yarnpkg.com/
 .. _Vue: https://vuejs.org/
 .. _Travis: https://travis-ci.org/
-.. _YandexMetrika: https://tech.yandex.ru/metrika/
+.. _`Google Analytics`: https://www.google.com/analytics/
+.. _`Yandex Metrika`: https://tech.yandex.ru/metrika/
 .. _CKeditor: https://ckeditor.com/
 .. _Docker: https://www.docker.com/
 .. _PostgreSQL: https://www.postgresql.org/
@@ -98,24 +99,16 @@ Answer the prompts with your own desired options. For example::
     Select use_ckeditor:
     1 - Everywhere
     2 - Backend
-    3 - Frontned
+    3 - Frontend
     4 - Don't use
-    Choose from 1, 2, 3, 4 [1]: 1
     ======================= DevOps ======================= [ ]:
-    Select postgres:
-    1 - 9.6
-    2 - 9.5
-    3 - 9.4
-    4 - 9.3
-    5 - 9.2
-    Choose from 1, 2, 3, 4, 5 [1]: 1
     use_celery [y]: y
     use_travis [y]: y
     use_sentry [y]: y
     use_mailhog [y]: y
     Select static_and_media:
-    1 - Whitenoise for static, Amazon S3 for media
-    2 - Amazon S3 for static and media
+    1 - Amazon S3 for static and media
+    2 - Whitenoise for static, Amazon S3 for media
     Choose from 1, 2 [1]: 1
     ====================== FRONT-END ===================== [ ]:
     Select analytics:

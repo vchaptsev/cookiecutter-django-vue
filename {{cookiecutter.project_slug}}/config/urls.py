@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^api/', include(api.urls, namespace='api')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
-    {% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Backend" -%}url(r'^ckeditor/', include('ckeditor_uploader.urls')){% endif %}
+    {% if cookiecutter.use_ckeditor == "Everywhere" or cookiecutter.use_ckeditor == "Backend" -%}url(r'^ckeditor/', include('ckeditor_uploader.urls')){% endif %}
 ]
 
 if settings.DEBUG:
@@ -22,7 +22,7 @@ if settings.DEBUG:
 
 class ExtraContextTemplateView(TemplateView):
     """
-    Hack for pass some content to Template View
+    Hack to pass some content to Template View
     """
     def get_context_data(self, **kwargs):
         context = super(ExtraContextTemplateView, self).get_context_data(**kwargs)
