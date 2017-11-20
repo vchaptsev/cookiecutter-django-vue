@@ -1,5 +1,7 @@
 Cookiecutter Django-Vue
 =======================
+.. image:: https://img.shields.io/gitter/room/nwjs/nw.js.svg
+   :target: https://gitter.im/cookiecutter-django-vue/Lobby
 
 Powered by Cookiecutter_, inspired by `Cookiecutter Django`_.
 
