@@ -2,7 +2,6 @@ Cookiecutter Django-Vue
 =======================
 
 Powered by Cookiecutter_, inspired by `Cookiecutter Django`_.
-Dockerized.
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`Cookiecutter Django`: https://github.com/pydanny/cookiecutter-django
