@@ -8,7 +8,7 @@ Dockerized.
 .. _`Cookiecutter Django`: https://github.com/pydanny/cookiecutter-django
 
 
-.. image:: https://preview.ibb.co/ghbksb/bf090ccb803136ea7d0ff3bc888619bde3dcf62b_vueanddjango.png
+.. image:: https://i.imgur.com/SA8cjs8.png
    :name: cookiecutter-django-vue
    :align: center
    :alt: cookiecutter-django-vue
