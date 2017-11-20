@@ -15,7 +15,7 @@
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.5.2",
     {% if cookiecutter.use_ckeditor == "Both" or cookiecutter.use_ckeditor == "Frontend" -%}"ckeditor": "^4.7.3",{% endif -%}
-    "compression-webpack-plugin": "^1.0.1",
+    {% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}"compression-webpack-plugin": "^1.0.1",{% endif -%}
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",

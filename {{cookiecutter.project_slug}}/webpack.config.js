@@ -1,7 +1,7 @@
 var webpack = require('webpack')
-var CompressionPlugin = require('compression-webpack-plugin')
 {% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}
 var S3Plugin = require('webpack-s3-plugin')
+var CompressionPlugin = require('compression-webpack-plugin')
 {% endif %}
 
 // ==================== MAIN SETTINGS ====================
@@ -66,8 +66,8 @@ if (process.env.NODE_ENV === 'production') {
             sourceMap: true,
             compress: {warnings: false}
         }),
-        new CompressionPlugin({asset: '[path].gz'}),
         {% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}
+        new CompressionPlugin({asset: '[path].gz'}),
         new S3Plugin({
             include: /.*\js/,
             s3Options: {
