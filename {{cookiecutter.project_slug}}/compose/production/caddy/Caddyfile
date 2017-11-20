@@ -1,7 +1,7 @@
-{% if cookiecutter.domain.split('.') | length == 2 %}www.{{cookiecutter.domain}} {
+{% if cookiecutter.domain.split('.') | length == 2 -%}www.{{cookiecutter.domain}} {
     redir https://{{cookiecutter.domain}}
-}{% endif %}
-
+}
+{% endif -%}
 {{cookiecutter.domain}} {
     proxy / django:5000 {
         transparent
