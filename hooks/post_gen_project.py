@@ -3,6 +3,7 @@
 2. Removes files conventional to opensource projects only
 3. Renames env.example to .env
 4. Removes the taskapp if celery isn't going to be used
+5. Removes .travis.yml if travis isn't going to be used
 """
 import os
 import random
@@ -52,6 +53,14 @@ def remove_task_app():
     """Removes the taskapp if celery isn't going to be used"""
     task_app = os.path.join(PROJECT_DIRECTORY, '{{ cookiecutter.project_slug }}/taskapp')
     shutil.rmtree(task_app)
+
+
+def remove_travis_file():
+    """
+    Removes travis file if it isn't going to be used
+    """
+    for filename in [".travis.yml"]:
+        os.remove(os.path.join(PROJECT_DIRECTORY, filename))
 
 
 # Removes files needed for the GPLv3 licence if it isn't going to be used.

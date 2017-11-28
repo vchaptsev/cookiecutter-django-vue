@@ -1,5 +1,5 @@
 import os
-from fabric.api import env, cd, run, hosts, local
+from fabric.api import local{% if cookiecutter.use_travis == 'y' -%}, env, cd, run, hosts{% endif %}
 
 
 {% if cookiecutter.use_travis == 'y' -%}
@@ -16,6 +16,7 @@ def deploy():
         run("git pull")
         run("docker-compose -f docker-compose-prod.yml up -d --no-deps --build")
         run("docker system prune -af"){% endif %}
+
 
 def up():
     """
