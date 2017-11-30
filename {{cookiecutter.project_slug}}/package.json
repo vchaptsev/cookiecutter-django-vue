@@ -14,10 +14,13 @@
     "babel-core": "^6.25.0",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.5.2",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
     {% if cookiecutter.use_ckeditor == "Everywhere" or cookiecutter.use_ckeditor == "Frontend" %}"ckeditor": "^4.7.3",{% endif %}
     {% if cookiecutter.static_and_media == 'Amazon S3 for static and media' %}"compression-webpack-plugin": "^1.0.1",{% endif %}
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
+    "es6-promise": "^4.1.1",
     "file-loader": "^1.1.4",
     "foundation-sites": "^6.4.1",
     "lodash": "^4.17.4",
