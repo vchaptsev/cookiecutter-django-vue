@@ -6,7 +6,7 @@ var CompressionPlugin = require('compression-webpack-plugin')
 
 // ==================== MAIN SETTINGS ====================
 module.exports = {
-    entry: './{{cookiecutter.project_slug}}/static/main.js',
+    entry: ['babel-polyfill', './{{cookiecutter.project_slug}}/static/main.js'],
     module: {
         rules: [
             {
@@ -17,12 +17,7 @@ module.exports = {
                         'scss': 'vue-style-loader!css-loader!sass-loader',
                         'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
                     },
-                    transformToRequire: {
-                        video: 'src',
-                        source: 'src',
-                        img: 'src',
-                        image: 'xlink:href'
-                      }
+                    transformToRequire: {video: 'src', source: 'src', img: 'src', image: 'xlink:href'}
                 }
             },
             {
@@ -33,26 +28,17 @@ module.exports = {
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
-                options: {
-                    limit: 10000,
-                    name: '[name].[hash:7].[ext]'
-                }
+                options: {limit: 10000, name: '[name].[hash:7].[ext]'}
             },
             {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                 loader: 'url-loader',
-                options: {
-                    limit: 10000,
-                    name: '[name].[hash:7].[ext]'
-                }
+                options: {limit: 10000, name: '[name].[hash:7].[ext]'}
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 loader: 'url-loader',
-                options: {
-                    limit: 10000,
-                    name: '[name].[hash:7].[ext]'
-                }
+                options: {limit: 10000, name: '[name].[hash:7].[ext]'}
             }
         ]
     },
@@ -85,10 +71,7 @@ if (process.env.NODE_ENV === 'production') {
     module.exports.plugins = [
         new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
         new webpack.LoaderOptionsPlugin({minimize: true}),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {warnings: false}
-        }),
+        new webpack.optimize.UglifyJsPlugin({sourceMap: true, compress: {warnings: false}}),
         {% if cookiecutter.static_and_media == 'Amazon S3 for static and media' -%}
         new CompressionPlugin({asset: '[path].gz'}),
         new S3Plugin({
