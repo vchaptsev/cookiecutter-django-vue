@@ -1,0 +1,5 @@
+cookiecutter==1.6.0
+
+# Testing
+pytest==3.3.0
+pytest-cookies==0.3.0
