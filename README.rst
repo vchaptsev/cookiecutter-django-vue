@@ -1,5 +1,7 @@
 Cookiecutter Django-Vue
 =======================
+.. image:: https://travis-ci.org/vchaptsev/cookiecutter-django-vue.svg?branch=master
+    :target: https://travis-ci.org/vchaptsev/cookiecutter-django-vue
 
 Powered by Cookiecutter_, inspired by `Cookiecutter Django`_.
 
@@ -15,19 +17,17 @@ Powered by Cookiecutter_, inspired by `Cookiecutter Django`_.
 
 Features
 ---------
-
-* Docker_-based
-* For Django_ 1.11
-* Vue_ framework
-* Works with Python 3.6
-* PostgreSQL_ database
-* Caddy_ server with LetsEncrypt_ integration
-
-* Optimized development and production settings (12-Factor_ based via django-environ_)
-* Send emails via Anymail_ (using Mailgun_ by default, but switchable)
-* Static & media files with AmazonS3 or Whitenoise_ + AmazonS3
-* Webpack_ for builds and hot-development-server
+* Docker_
+* 12-Factor_
+* Back: Django_
+* Front: Vue.js_
+* Server: Caddy_
+* Database: PostgreSQL_
 * Yarn_ for npm-dependencies
+* Webpack_ for builds and hot-development-server
+* Static & media files with AmazonS3_ or Whitenoise_
+* Send emails via Anymail_ (using Mailgun_ by default)
+
 
 Optional Integrations
 ---------------------
@@ -36,37 +36,35 @@ Optional Integrations
 
 * Integration with Travis_ for CI
 * Integration with Sentry_ for error logging
-* Integration with MailHog_ for local email testing
-* Integration with `Google Analytics` or `Yandex Metrika`_ for web-analytics
 * Integration with CKeditor_ for rich text editing
+* Integration with MailHog_ for local email testing
+* Integration with `Google Analytics`_ or `Yandex Metrika`_ for web-analytics
 
-.. _Django: https://www.djangoproject.com/
-.. _django-environ: https://github.com/joke2k/django-environ
 .. _12-Factor: http://12factor.net/
-.. _Mailgun: http://www.mailgun.com/
+.. _AmazonS3: https://aws.amazon.com/s3/
 .. _Anymail: https://github.com/anymail/django-anymail
-.. _MailHog: https://github.com/mailhog/MailHog
-.. _Sentry: https://sentry.io/welcome/
 .. _Caddy: https://caddyserver.com/
-.. _LetsEncrypt: https://letsencrypt.org/
-.. _Webpack: https://webpack.github.io/
-.. _Yarn: https://yarnpkg.com/
-.. _Vue: https://vuejs.org/
-.. _Travis: https://travis-ci.org/
-.. _`Google Analytics`: https://www.google.com/analytics/
-.. _`Yandex Metrika`: https://tech.yandex.ru/metrika/
 .. _CKeditor: https://ckeditor.com/
+.. _Django: https://www.djangoproject.com/
 .. _Docker: https://www.docker.com/
+.. _`Google Analytics`: https://www.google.com/analytics/
+.. _LetsEncrypt: https://letsencrypt.org/
+.. _Mailgun: http://www.mailgun.com/
+.. _MailHog: https://github.com/mailhog/MailHog
 .. _PostgreSQL: https://www.postgresql.org/
+.. _Sentry: https://sentry.io/welcome/
+.. _Travis: https://travis-ci.org/
+.. _Vue.js: https://vuejs.org/
+.. _Webpack: https://webpack.github.io/
 .. _Whitenoise: http://whitenoise.evans.io/
+.. _`Yandex Metrika`: https://tech.yandex.ru/metrika/
+.. _Yarn: https://yarnpkg.com/
+
 
 Usage
 ------
 
-Let's pretend you want to create a Django project called "my_awesome_website". Rather than using `startproject`
-and then editing the results to include your name, email, and various configuration issues that always get forgotten until the worst possible moment, get cookiecutter_ to do all the work.
-
-First, get Cookiecutter. Trust me, it's awesome::
+First, get Cookiecutter::
 
     $ pip install cookiecutter
 
@@ -75,8 +73,6 @@ Now run it against this repo::
     $ cookiecutter https://github.com/vchaptsev/cookiecutter-django-vue
 
 You'll be prompted for some values. Provide them, then a Django project will be created for you.
-
-**Warning**: After this point, change 'Daniel Greenfeld', etc to your own information.
 
 Answer the prompts with your own desired options. For example::
 
