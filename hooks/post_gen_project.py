@@ -50,9 +50,15 @@ def rename_env_file():
 
 
 def remove_task_app():
-    """Removes the taskapp if celery isn't going to be used"""
+    """Removes celery files if celery isn't going to be used"""
     task_app = os.path.join(PROJECT_DIRECTORY, '{{ cookiecutter.project_slug }}/taskapp')
     shutil.rmtree(task_app)
+
+    celery_local = os.path.join(PROJECT_DIRECTORY, 'compose/local/django/celery')
+    shutil.rmtree(celery_local)
+
+    celery_prod = os.path.join(PROJECT_DIRECTORY, 'compose/production/django/celery')
+    shutil.rmtree(celery_prod)
 
 
 def remove_travis_file():
