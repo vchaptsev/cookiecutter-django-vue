@@ -1,5 +1,3 @@
-import 'es6-promise/auto' // https://github.com/stefanpenner/es6-promise
-
 import Vue from 'vue'
 
 import axios from 'axios'
