@@ -1,26 +1,9 @@
-import pytest
-
-
-@pytest.fixture
-def context():
-    return {
-        'project_name': 'test',
-        'project_slug': 'test',
-        'domain': 'test.com',
-        'description': 'A short description of the project.',
-        'author': 'author',
-        'email': 'author@test.com',
-        'version': '0.1.0'
-    }
-
-
-def test_default(cookies, context):
+def test_default(cookies):
     """
-    Test default config
+    Checks if default configuration is working
     """
-    result = cookies.bake(extra_context=context)
+    result = cookies.bake()
 
     assert result.exit_code == 0
-    assert result.exception is None
     assert result.project.isdir()
-    assert result.project.basename == context['project_slug']
+    assert result.exception is None
