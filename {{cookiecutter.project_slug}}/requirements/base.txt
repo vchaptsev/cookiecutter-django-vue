@@ -46,8 +46,5 @@ ptpython==0.36
 # fabric for deployment
 Fabric3==1.13.1.post1
 
-{% if cookiecutter.use_ckeditor == "Everywhere" or cookiecutter.use_ckeditor == "Backend" -%}# CKEditor
-django-ckeditor==5.3.0{% endif %}
-
 {% if cookiecutter.static_and_media == 'Whitenoise for static, Amazon S3 for media' %}# static files
 whitenoise==3.3.1{% endif %}

@@ -91,11 +91,6 @@ Answer the prompts with your own desired options. For example::
     4 - Apache Software License 2.0
     5 - Not open source
     Choose from 1, 2, 3, 4, 5 [1]: 1
-    Select use_ckeditor:
-    1 - Everywhere
-    2 - Backend
-    3 - Frontend
-    4 - Don't use
     ======================= DevOps ======================= [ ]:
     use_celery [y]: y
     use_travis [y]: y
@@ -110,6 +105,8 @@ Answer the prompts with your own desired options. For example::
     1 - Google Analytics
     2 - Yandex metrika
     3 - None
+    Choose from 1, 2, 3 [1]: 1
+    use_ckeditor [n]: n
     use_progressbar [n]: n
     use_vue_material [n]: n
 

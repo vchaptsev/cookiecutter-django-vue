@@ -45,10 +45,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
-    'django_extensions',
-    {% if cookiecutter.use_ckeditor == "Everywhere" or cookiecutter.use_ckeditor == "Backend" -%}
-    'ckeditor',
-    'ckeditor_uploader'{% endif %}
+    'django_extensions'
 ]
 
 # Apps specific for this project go here.
@@ -261,27 +258,6 @@ else:
 # Location of root django.contrib.admin URL
 ADMIN_URL = r'^admin/'
 
-{% if cookiecutter.use_ckeditor == "Everywhere" or cookiecutter.use_ckeditor == "Backend" -%}
-# CKeditor settings
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline'],
-            ['Format', 'FontSize'],
-            [
-                'NumberedList', 'BulletedList', '-',
-                'Outdent', 'Indent', '-',
-                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'
-            ],
-            ['Link', 'Unlink', 'Image'],
-            ['RemoveFormat', 'Source']
-        ]
-    }
-}
-
-CKEDITOR_UPLOAD_PATH = 'uploads/'
-{% endif %}
 # Mailgun api
 DJANGO_MAILGUN_API_PUB = env('DJANGO_MAILGUN_API_PUB', default=None)
 

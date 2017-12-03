@@ -10,7 +10,6 @@
 
     "version": "0.1.0",
     "license": ["MIT", "BSD", "GPLv3", "Apache Software License 2.0", "Not open source"],
-    "use_ckeditor": ["Everywhere", "Backend", "Frontend", "Don't use"],
 
     "======================= DevOps =======================": " ",
     "use_celery": "y",
@@ -21,6 +20,7 @@
 
     "====================== FRONT-END =====================": " ",
     "analytics": ["Google Analytics", "Yandex Metrika", "None"],
+    "use_ckeditor": "n",
     "use_progressbar": "n",
     "use_vue_material": "n"
 }
