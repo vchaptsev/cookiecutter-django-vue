@@ -16,7 +16,7 @@
     "use_travis": "y",
     "use_sentry": "y",
     "use_mailhog": "y",
-    "static_and_media": ["Amazon S3 for static and media", "Whitenoise for static, Amazon S3 for media"],
+    "static_and_media": ["Amazon S3", "Whitenoise and Amazon S3"],
 
     "====================== FRONT-END =====================": " ",
     "analytics": ["Google Analytics", "Yandex Metrika", "None"],

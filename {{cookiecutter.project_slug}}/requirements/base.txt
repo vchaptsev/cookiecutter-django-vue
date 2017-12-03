@@ -46,5 +46,5 @@ ptpython==0.36
 # fabric for deployment
 Fabric3==1.13.1.post1
 
-{% if cookiecutter.static_and_media == 'Whitenoise for static, Amazon S3 for media' %}# static files
+{% if cookiecutter.static_and_media == 'Whitenoise and Amazon S3' %}# static files
 whitenoise==3.3.1{% endif %}

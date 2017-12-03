@@ -9,7 +9,7 @@ gunicorn==19.7.1
 # ------------------------------------------------
 boto3==1.4.7
 django-storages==1.6.5
-{% if cookiecutter.static_and_media == 'Amazon S3 for static and media' %}
+{% if cookiecutter.static_and_media == 'Amazon S3' %}
 Collectfast==0.5.2{% endif %}
 
 # Email backends for Mailgun, Postmark, SendGrid and more
