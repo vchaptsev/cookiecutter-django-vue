@@ -1,7 +1,8 @@
-Cookiecutter Django-Vue
-=======================
 .. image:: https://travis-ci.org/vchaptsev/cookiecutter-django-vue.svg?branch=master
     :target: https://travis-ci.org/vchaptsev/cookiecutter-django-vue
+    
+Cookiecutter Django-Vue
+=======================
 
 Powered by Cookiecutter_, inspired by `Cookiecutter Django`_.
 
