@@ -102,6 +102,7 @@ if (process.env.NODE_ENV === 'development') {
         filename: 'build.js'
     },
     module.exports.plugins = [
+        new webpack.DefinePlugin({'process.env': {NODE_ENV: '"development"'}}),
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.LoaderOptionsPlugin({vue: {loader: {js: 'babel-loader'}}})
