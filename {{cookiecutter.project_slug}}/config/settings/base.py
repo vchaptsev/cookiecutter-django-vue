@@ -267,4 +267,4 @@ GOOGLE_ANALYTICS = env('GOOGLE_ANALYTICS', default=None){% endif %}
 
 {% if cookiecutter.analytics == 'Yandex Metrika' -%}
 # Yandex Metrika
-YANDEX_METRIKA = env('YANDEX_METRIKA', default=None){% endif %}
+YANDEX_METRIKA = env('YANDEX_METRIKA', default=1){% endif %}
