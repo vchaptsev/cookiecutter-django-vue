@@ -41,7 +41,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @list_route(methods=['GET'])
     def profile(self, request):
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             serializer = self.serializer_class(request.user)
             return Response(status=status.HTTP_200_OK, data=serializer.data)
         return Response(status=status.HTTP_401_UNAUTHORIZED)

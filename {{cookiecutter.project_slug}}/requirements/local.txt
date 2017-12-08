@@ -8,5 +8,5 @@ coverage==4.4.1
 pytest-django==3.1.2
 pytest-sugar==0.8.0
 pytest-cov==2.5.1
-django-test-plus==1.0.17
+django-test-plus==1.0.20
 factory-boy==2.8.1
