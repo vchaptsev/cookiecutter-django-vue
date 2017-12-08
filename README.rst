@@ -1,6 +1,6 @@
 .. image:: https://travis-ci.org/vchaptsev/cookiecutter-django-vue.svg?branch=master
     :target: https://travis-ci.org/vchaptsev/cookiecutter-django-vue
-    
+
 Cookiecutter Django-Vue
 =======================
 
@@ -95,6 +95,7 @@ Answer the prompts with your own desired options. For example::
     ======================= DevOps ======================= [ ]:
     use_celery [y]: y
     use_travis [y]: y
+    use_fabric_deployment [n]: n
     use_sentry [y]: y
     use_mailhog [y]: y
     Select static_and_media:

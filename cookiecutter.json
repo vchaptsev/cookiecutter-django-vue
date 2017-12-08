@@ -14,6 +14,7 @@
     "======================= DevOps =======================": " ",
     "use_celery": "y",
     "use_travis": "y",
+    "use_fabric_deployment": "n",
     "use_sentry": "y",
     "use_mailhog": "y",
     "static_and_media": ["Amazon S3", "Whitenoise and Amazon S3"],

@@ -1,9 +1,10 @@
 """
 1. Generates and saves random secret key
-2. Removes files conventional to opensource projects only
-3. Renames env.example to .env
-4. Removes the taskapp if celery isn't going to be used
-5. Removes .travis.yml if travis isn't going to be used
+2. Renames env.example to .env
+3. Removes the taskapp if celery isn't going to be used
+4. Removes .travis.yml if travis isn't going to be used
+5. Removes fabfile.py if ssh_deployment isn't going to be used
+6. Removes files conventional to opensource projects only
 """
 import os
 import random
@@ -92,6 +93,10 @@ if '{{ cookiecutter.use_celery }}'.lower() == 'n':
 # Removes travis file if it isn't going to be used
 if '{{ cookiecutter.use_travis }}'.lower() == 'n':
     remove_travis_file()
+
+# Removes fabric file if it isn't going to be used
+if '{{ cookiecutter.use_fabric_deployment }}'.lower() == 'n':
+    remove_fabric_file()
 
 # Generates and saves random secret key
 set_secret_key(os.path.join(PROJECT_DIRECTORY, 'env.example'))  # env file
