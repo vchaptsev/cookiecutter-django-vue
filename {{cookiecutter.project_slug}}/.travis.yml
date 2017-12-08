@@ -4,22 +4,8 @@ group: edge
 services: docker
 language: python
 python: '3.6'
-cache:
-    - pip
-    - yarn
+cache: pip
 before_install:
-    - sudo apt-get update -qq
-    - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
-    - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
-    - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
-    - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
-    - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
-    - curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` > docker-compose
-    - chmod +x docker-compose && sudo mv docker-compose /usr/local/bin && docker-compose build
-    - pip install Fabric3==1.13.1.post1
+    - pip install Fabric3
 script: docker-compose run django py.test
 after_success: docker-compose down && fab deploy
-# Here you need to set up env for PRODUCTION_USER and PRODUCTION_PASSWORD.
-# docs: https://docs.travis-ci.com/user/environment-variables/#Encrypting-environment-variables
-# example: travis encrypt PRODUCTION_USER=user --add env.global
-#          travis encrypt PRODUCTION_PASSWORD=secret --add env.global
