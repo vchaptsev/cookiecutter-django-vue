@@ -11,9 +11,6 @@ Powered by Cookiecutter_, inspired by `Cookiecutter Django`_.
 
 
 .. image:: https://i.imgur.com/SA8cjs8.png
-   :name: cookiecutter-django-vue
-   :align: center
-   :alt: cookiecutter-django-vue
    :target: https://github.com/vchaptsev/cookiecutter-django-vue
 
 Features
