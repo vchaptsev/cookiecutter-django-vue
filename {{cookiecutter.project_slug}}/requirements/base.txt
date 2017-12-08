@@ -1,10 +1,10 @@
 wheel==0.29.0
 
 # Bleeding edge Django
-django==1.11
+django==2.0
 
 # REST Framework
-djangorestframework==3.6.3
+djangorestframework==3.7.3
 
 # Configuration
 django-environ==0.4.3
