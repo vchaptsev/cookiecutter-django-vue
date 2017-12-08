@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
     depends_on:
-      - postgres{% if cookiecutter.use_mailhog == 'y' %}
+      - postgres
     volumes:
       - .:/app
     environment:
@@ -45,8 +45,7 @@ services:
     <<: *django
     depends_on:
       - redis
-      - postgres{% if cookiecutter.use_mailhog == 'y' %}
-      - mailhog{% endif %}
+      - postgres
     ports: []
     command: /start-celeryworker.sh
 
@@ -55,8 +54,7 @@ services:
     <<: *django
     depends_on:
       - redis
-      - postgres{% if cookiecutter.use_mailhog == 'y' %}
-      - mailhog{% endif %}
+      - postgres
     ports: []
     command: /start-celerybeat.sh
 {% endif %}
