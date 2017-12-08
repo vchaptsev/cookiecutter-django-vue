@@ -69,6 +69,14 @@ def remove_travis_file():
         os.remove(os.path.join(PROJECT_DIRECTORY, filename))
 
 
+def remove_fabric_file():
+    """
+    Removes fabric file if it isn't going to be used
+    """
+    for filename in ["fabfile.py"]:
+        os.remove(os.path.join(PROJECT_DIRECTORY, filename))
+
+
 # Removes files needed for the GPLv3 licence if it isn't going to be used.
 if '{{ cookiecutter.license}}' != 'GPLv3':
     remove_copying_files()
@@ -80,6 +88,10 @@ if '{{ cookiecutter.license }}' == 'Not open source':
 # Removes the taskapp if celery isn't going to be used
 if '{{ cookiecutter.use_celery }}'.lower() == 'n':
     remove_task_app()
+
+# Removes travis file if it isn't going to be used
+if '{{ cookiecutter.use_travis }}'.lower() == 'n':
+    remove_travis_file()
 
 # Generates and saves random secret key
 set_secret_key(os.path.join(PROJECT_DIRECTORY, 'env.example'))  # env file
