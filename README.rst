@@ -96,8 +96,9 @@ Answer the prompts with your own desired options. For example::
     use_sentry [y]: y
     use_mailhog [y]: y
     Select static_and_media:
-    1 - Amazon S3
-    2 - Whitenoise and Amazon S3
+    1 - Amazon S3 (static and media)
+    2 - Whitenoise (static) and Amazon S3 (media)
+    3 - Whitenoise (static)
     Choose from 1, 2 [1]: 1
     ====================== FRONT-END ===================== [ ]:
     Select analytics:

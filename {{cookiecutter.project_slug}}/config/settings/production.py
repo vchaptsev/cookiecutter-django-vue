@@ -6,10 +6,12 @@ Production Configurations
 {% if cookiecutter.use_sentry == 'y' -%}
 - Use Sentry for error logging
 {% endif %}
-{% if cookiecutter.static_and_media == 'Amazon S3' -%}
+{% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
 - Use Amazon S3 files
+{% elif cookiecutter.static_and_media == 'Whitenoise (static) and Amazon S3 (media)' %}
+- Use Whitenoise for static and Amazon S3 for media
 {% else %}
-- Use Whitenoise and Amazon S3 files
+- Use Whitenoise for static
 {% endif %}
 """
 
@@ -26,7 +28,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-{% if cookiecutter.static_and_media != 'Amazon S3' -%}
+{% if cookiecutter.static_and_media != 'Amazon S3 (static and media)' -%}
 # Use Whitenoise to serve static files
 # See: https://whitenoise.readthedocs.io/
 WHITENOISE_MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware']
@@ -73,7 +75,7 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=%d, s-maxage=%d, must-revalidate'.format(AWS_EXPIRY, AWS_EXPIRY)
 }
 
-{% if cookiecutter.static_and_media == 'Amazon S3' -%}
+{% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
 from storages.backends.s3boto3 import S3Boto3Storage
 StaticRootS3BotoStorage = lambda: S3Boto3Storage(location='static')
 MediaRootS3BotoStorage = lambda: S3Boto3Storage(location='media')
@@ -86,7 +88,7 @@ STATIC_URL = 'https://{}.s3.{}.amazonaws.com/static/'.format(AWS_STORAGE_BUCKET_
 STATICFILES_STORAGE = 'config.settings.production.StaticRootS3BotoStorage'
 AWS_PRELOAD_METADATA = True
 INSTALLED_APPS = ['collectfast'] + INSTALLED_APPS
-{% else %}
+{% elif cookiecutter.static_and_media == 'Whitenoise (static) and Amazon S3 (media)' %}
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIA_URL = 'https://{}.s3.{}.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
 {%- endif %}

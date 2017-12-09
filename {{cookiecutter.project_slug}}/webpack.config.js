@@ -1,5 +1,5 @@
 var webpack = require('webpack')
-{% if cookiecutter.static_and_media == 'Amazon S3' -%}
+{% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
 var S3Plugin = require('webpack-s3-plugin')
 var CompressionPlugin = require('compression-webpack-plugin')
 {% endif %}
@@ -51,11 +51,11 @@ module.exports = {
 if (process.env.NODE_ENV === 'production') {
     module.exports.devtool = '#source-map'
     module.exports.output = {
-        {% if cookiecutter.static_and_media == 'Amazon S3' -%}path: '/',{% else %}path: '/app/staticfiles/dist/',{% endif %}
+        {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}path: '/',{% else %}path: '/app/staticfiles/dist/',{% endif %}
         publicPath: 'http://localhost:3000/static/dist/',
         filename: 'build.js'
     },
-    {% if cookiecutter.static_and_media == 'Amazon S3' -%}
+    {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
     module.exports.module.rules.push(
         {
             enforce: 'pre',
@@ -72,7 +72,7 @@ if (process.env.NODE_ENV === 'production') {
         new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
         new webpack.LoaderOptionsPlugin({minimize: true}),
         new webpack.optimize.UglifyJsPlugin({sourceMap: true, compress: {warnings: false}}),
-        {% if cookiecutter.static_and_media == 'Amazon S3' -%}
+        {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
         new CompressionPlugin({asset: '[path].gz'}),
         new S3Plugin({
             include: /.*\js/,

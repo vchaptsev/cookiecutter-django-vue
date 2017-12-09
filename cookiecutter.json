@@ -17,7 +17,7 @@
     "use_fabric_deployment": "n",
     "use_sentry": "y",
     "use_mailhog": "y",
-    "static_and_media": ["Amazon S3", "Whitenoise and Amazon S3"],
+    "static_and_media": ["Amazon S3 (static and media)", "Whitenoise (static) and Amazon S3 (media)", "Whitenoise (static)"],
 
     "====================== FRONT-END =====================": " ",
     "analytics": ["Google Analytics", "Yandex Metrika", "None"],
