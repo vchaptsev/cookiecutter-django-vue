@@ -35,7 +35,7 @@
     {% if cookiecutter.use_progressbar == 'y' %}"vue-progressbar": "^0.7.3",{% endif %}
     "vue-router": "^2.7.0",
     "vue-template-compiler": "^2.3.4",
-    {% if cookiecutter.analytics == "Yandex Metrika" %}"vue-yandex-metrika": "^1.1.1",{% endif %}
+    {% if cookiecutter.analytics == "Yandex Metrika" %}"vue-yandex-metrika": "^1.4.0",{% endif %}
     "vuex": "^2.3.1",
     "webpack": "^2.6.1",
     {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' %}"webpack-s3-plugin": "git+https://github.com/eyupci/s3-plugin-webpack.git#master",{% endif %}
