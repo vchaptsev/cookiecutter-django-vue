@@ -7,4 +7,4 @@ python: 3.6
 cache: pip
 script:
     - py.test tests
-    - sh tests/test_generation.sh
+    - sh tests/test_docker.sh

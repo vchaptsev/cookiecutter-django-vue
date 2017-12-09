@@ -11,4 +11,4 @@ mkdir -p .cache/docker && cd .cache/docker
 cookiecutter ../../ --no-input --overwrite-if-exists && cd project_name
 
 # run the project's tests
-docker-compose run django python manage.py test
+docker-compose run django py.test
