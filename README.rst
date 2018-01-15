@@ -33,9 +33,9 @@ Optional Integrations
 *These features can be enabled during initial project setup.*
 
 * Integration with Travis_ for CI
-* Integration with Sentry_ for error logging
 * Integration with CKeditor_ for rich text editing
 * Integration with MailHog_ for local email testing
+* Integration with Sentry_ for frontend and backend errors logging
 * Integration with `Google Analytics`_ or `Yandex Metrika`_ for web-analytics
 
 .. _12-Factor: http://12factor.net/

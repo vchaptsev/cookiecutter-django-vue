@@ -266,3 +266,7 @@ GOOGLE_ANALYTICS = env('GOOGLE_ANALYTICS', default=None){% endif %}
 {% if cookiecutter.analytics == 'Yandex Metrika' -%}
 # Yandex Metrika
 YANDEX_METRIKA = env('YANDEX_METRIKA', default=1){% endif %}
+
+{% if cookiecutter.use_sentry == 'y' %}
+# Raven for frontend errors logging
+DJANGO_RAVEN_DSN = env('DJANGO_RAVEN_DSN', default=None){% endif %}

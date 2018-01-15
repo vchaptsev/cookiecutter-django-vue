@@ -6,6 +6,7 @@ import {store} from './store'
 import Meta from 'vue-meta'
 {% if cookiecutter.analytics == 'Google Analytics' %}import VueAnalytics from 'vue-analytics'{% endif %}
 {% if cookiecutter.analytics == 'Yandex Metrika' %}import VueYandexMetrika from 'vue-yandex-metrika'{% endif %}
+{% if cookiecutter.use_sentry == 'y' %}import VueRaven from 'vue-raven'{% endif %}
 
 {% if cookiecutter.use_progressbar == 'y' %}import VueProgressBar from 'vue-progressbar'{% endif %}
 {% if cookiecutter.use_vue_material == 'y' %}
@@ -14,8 +15,14 @@ import 'vue-material/dist/vue-material.css'{% endif %}
 
 import Main from './Main.vue'
 
+// Axios сыка settings
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
+{% if cookiecutter.use_sentry == 'y' %}
+// Sentry for logging frontend errors
+if (!DEBUG) {Vue.use(VueRaven, {dsn: RAVEN_DSN})}
+{% endif %}
 
 {% if cookiecutter.analytics == 'Google Analytics' %}
 // more info: https://github.com/MatteoGabriele/vue-analytics
