@@ -26,7 +26,7 @@ class ExtraContextTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ExtraContextTemplateView, self).get_context_data(**kwargs)
         context['DEBUG'] = settings.DEBUG
-        {% if cookiecutter.use_sentry == 'y' %}context['raven_dsn'] = settings.DJANGO_RAVEN_DSN{% endif %}
+        {% if cookiecutter.use_sentry == 'y' %}context['raven_dsn'] = settings.SENTRY_PUBLIC_DSN{% endif %}
         {% if cookiecutter.analytics == 'Yandex Metrika' -%}context['yandex_metrika'] = settings.YANDEX_METRIKA{% endif %}
         {% if cookiecutter.analytics == 'Google Analytics' -%}context['google_analytics'] = settings.GOOGLE_ANALYTICS{% endif %}
         return context
