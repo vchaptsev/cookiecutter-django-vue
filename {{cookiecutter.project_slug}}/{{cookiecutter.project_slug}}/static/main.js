@@ -15,7 +15,7 @@ import 'vue-material/dist/vue-material.css'{% endif %}
 
 import Main from './Main.vue'
 
-// Axios сыка settings
+// Axios csrf settings
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
