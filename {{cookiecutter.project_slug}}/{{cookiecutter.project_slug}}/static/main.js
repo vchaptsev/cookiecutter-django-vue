@@ -35,7 +35,8 @@ Vue.use(VueYandexMetrika, {id: metrika, env: process.env.NODE_ENV, router})
 
 {% if cookiecutter.use_progressbar == 'y' -%}// Progress bar interceptors
 axios.interceptors.request.use((config) => {router.app.$Progress.start(); return config}, function (error) {router.app.$Progress.fail(); return Promise.reject(error)});
-axios.interceptors.response.use((response) => {router.app.$Progress.finish(); return response}, function (error) {router.app.$Progress.fail(); return Promise.reject(error)}){% endif -%}
+axios.interceptors.response.use((response) => {router.app.$Progress.finish(); return response}, function (error) {router.app.$Progress.fail(); return Promise.reject(error)});
+{% endif %}
 
 Vue.use(Meta)
 {% if cookiecutter.use_progressbar == 'y' %}Vue.use(VueProgressBar){% endif %}
