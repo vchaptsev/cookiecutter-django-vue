@@ -36,9 +36,9 @@
         <div id="main"></div>
     </body>
 
-    {% if cookiecutter.analytics == 'Google Analytics' -%}{% raw %}{% if google_analytics %}<script>var analytics = "{{ google_analytics }}"</script>{% endif %}{% endraw %}{% endif %}
-    {% if cookiecutter.analytics == 'Yandex Metrika' -%}{% raw %}<script>var metrika = {{ yandex_metrika }}</script>{% endraw %}{% endif %}
-    {% if cookiecutter.use_sentry == 'y' %}{% raw %}<script>var RAVEN_DSN = "{{ raven_dsn }}"</script>{% endraw %}{% endif %}
+    {% if cookiecutter.analytics == 'Google Analytics' -%}{% raw %}{% if GOOGLE_ANALYTICS %}<script>var GOOGLE_ANALYTICS = "{{ GOOGLE_ANALYTICS }}"</script>{% endif %}{% endraw %}{% endif %}
+    {% if cookiecutter.analytics == 'Yandex Metrika' -%}{% raw %}<script>var YANDEX_METRIKA = {{ YANDEX_METRIKA }}</script>{% endraw %}{% endif %}
+    {% if cookiecutter.use_sentry == 'y' %}{% raw %}<script>var SENTRY_PUBLIC_DSN = "{{ SENTRY_PUBLIC_DSN }}"</script>{% endraw %}{% endif %}
     {% raw %}<script type="text/javascript">var DEBUG = {{ DEBUG | lower }}</script>{% endraw %}
     <script src="{% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}{% raw %}{% if DEBUG %}http://localhost:3000{% static 'dist/build.js' %}{% else %}{% static 'dist/build.js.gz' %}{% endif %}{% endraw %}{% else %}{% raw %}{% if DEBUG %}http://localhost:3000{% endif %}{% static 'dist/build.js' %}{% endraw %}{% endif %}" async></script>
     {% if cookiecutter.use_ckeditor == "y" -%}<script src="https://cdn.ckeditor.com/4.7.3/basic/ckeditor.js" async></script>{% endif %}

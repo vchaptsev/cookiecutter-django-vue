@@ -21,16 +21,16 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 {% if cookiecutter.use_sentry == 'y' %}
 // Sentry for logging frontend errors
-if (!DEBUG) {Vue.use(VueRaven, {dsn: RAVEN_DSN})}
+if (!DEBUG) {Vue.use(VueRaven, {dsn: SENTRY_PUBLIC_DSN})}
 {% endif %}
 
 {% if cookiecutter.analytics == 'Google Analytics' %}
 // more info: https://github.com/MatteoGabriele/vue-analytics
-Vue.use(VueAnalytics, {id: analytics, router})
+Vue.use(VueAnalytics, {id: GOOGLE_ANALYTICS, router})
 {% endif %}
 {% if cookiecutter.analytics == 'Yandex Metrika' %}
 // more info: https://github.com/vchaptsev/vue-yandex-metrika
-Vue.use(VueYandexMetrika, {id: metrika, env: process.env.NODE_ENV, router})
+Vue.use(VueYandexMetrika, {id: YANDEX_METRIKA, env: process.env.NODE_ENV, router})
 {% endif %}
 
 {% if cookiecutter.use_progressbar == 'y' -%}// Progress bar interceptors
