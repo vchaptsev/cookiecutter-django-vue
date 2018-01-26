@@ -3,7 +3,7 @@
     "project_name": "Project Name",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
     "domain": "{{ cookiecutter.project_slug }}.com",
-    "description": "A short description of the project.",
+    "description": "A short description of the project",
 
     "author": "Daniel Roy Greenfeld",
     "email": "admin@{{ cookiecutter.domain }}",
@@ -11,17 +11,17 @@
     "version": "0.1.0",
     "license": ["MIT", "BSD", "GPLv3", "Apache Software License 2.0", "Not open source"],
 
-    "======================= DevOps =======================": " ",
-    "use_celery": "y",
+    "======================= DEVOPS =======================": " ",
     "use_travis": "y",
     "use_sentry": "y",
-    "use_mailhog": "y",
     "static_and_media": ["Amazon S3 (static and media)", "Whitenoise (static) and Amazon S3 (media)", "Whitenoise (static)"],
 
-    "====================== BACKEND =====================": " ",
+    "======================= BACKEND ======================": " ",
     "django": ["1.11", "2.0"],
+    "use_celery": "y",
+    "use_mailhog": "y",
 
-    "====================== FRONTEND =====================": " ",
+    "======================= FRONTEND =====================": " ",
     "analytics": ["Google Analytics", "Yandex Metrika", "None"],
-    "use_progressbar": "n",
+    "use_progressbar": "n"
 }

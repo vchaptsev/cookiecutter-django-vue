@@ -68,44 +68,49 @@ First, get Cookiecutter::
 
 Now run it against this repo::
 
-    $ cookiecutter https://github.com/vchaptsev/cookiecutter-django-vue
+    $ cookiecutter gh:vchaptsev/cookiecutter-django-vue
 
 You'll be prompted for some values. Provide them, then a Django project will be created for you.
 
 Answer the prompts with your own desired options. For example::
 
-    ======================= GENERAL ====================== [ ]:
-    project_name [Project Name]: Website
-    project_slug [website]: website
-    domain [website.com]: website.com
-    description [A short description of the project.]: My awesome website
-    author [Daniel Roy Greenfeld]: Your Name
-    email [admin@website.com]: admin@website.com
-    version [0.1]: 0.1
-    Select license:
-    1 - MIT
-    2 - BSD
-    3 - GPLv3
-    4 - Apache Software License 2.0
-    5 - Not open source
-    Choose from 1, 2, 3, 4, 5 [1]: 1
-    ======================= DevOps ======================= [ ]:
-    use_celery [y]: y
-    use_travis [y]: y
-    use_sentry [y]: y
-    use_mailhog [y]: y
-    Select static_and_media:
-    1 - Amazon S3 (static and media)
-    2 - Whitenoise (static) and Amazon S3 (media)
-    3 - Whitenoise (static)
-    Choose from 1, 2 [1]: 1
-    ====================== FRONT-END ===================== [ ]:
-    Select analytics:
-    1 - Google Analytics
-    2 - Yandex metrika
-    3 - None
-    Choose from 1, 2, 3 [1]: 1
-    use_progressbar [n]: n
+======================= GENERAL ====================== [ ]:
+project_name [Project Name]: Website
+project_slug [website]: website
+domain [website.com]: website.com
+description [A short description of the project]: My awesome website
+author [Daniel Roy Greenfeld]: Your Name
+email [admin@website.com]: admin@website.com
+version [0.1.0]: 0.1.0
+Select license:
+1 - MIT
+2 - BSD
+3 - GPLv3
+4 - Apache Software License 2.0
+5 - Not open source
+Choose from 1, 2, 3, 4, 5 [1]: 1
+======================= DEVOPS ======================= [ ]:
+use_travis [y]: y
+use_sentry [y]: y
+Select static_and_media:
+1 - Amazon S3 (static and media)
+2 - Whitenoise (static) and Amazon S3 (media)
+3 - Whitenoise (static)
+Choose from 1, 2, 3 [1]: 1
+======================= BACKEND ====================== [ ]:
+Select django:
+1 - 1.11
+2 - 2.0
+Choose from 1, 2 [1]: 1
+use_celery [y]: y
+use_mailhog [y]: y
+======================= FRONTEND ===================== [ ]:
+Select analytics:
+1 - Google Analytics
+2 - Yandex Metrika
+3 - None
+Choose from 1, 2, 3 [1]: 2
+use_progressbar [n]: n
 
 Now you can start project with `docker-compose`_::
 
