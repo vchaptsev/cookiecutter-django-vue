@@ -19,7 +19,10 @@
     "use_mailhog": "y",
     "static_and_media": ["Amazon S3 (static and media)", "Whitenoise (static) and Amazon S3 (media)", "Whitenoise (static)"],
 
-    "====================== FRONT-END =====================": " ",
+    "====================== BACKEND =====================": " ",
+    "django": ["1.11", "2.0"],
+
+    "====================== FRONTEND =====================": " ",
     "analytics": ["Google Analytics", "Yandex Metrika", "None"],
     "use_ckeditor": "n",
     "use_progressbar": "n",

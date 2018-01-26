@@ -1,7 +1,7 @@
 wheel==0.29.0
 
 # Bleeding edge Django
-django==2.0
+django=={{ cookiecutter.django }}
 
 # REST Framework
 djangorestframework==3.7.3
