@@ -23,7 +23,7 @@ env = environ.Env()
 # as environment variables.
 try:
     env_file = str(ROOT_DIR.path('.env'))
-    print('Loading : {}'.format(env_file))
+    print(f'Loading : {env_vile}')
     env.read_env(env_file)
     print('The .env file has been loaded. See base.py for more information')
 except:

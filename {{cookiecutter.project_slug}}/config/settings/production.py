@@ -72,7 +72,7 @@ AWS_EXPIRY = timedelta(days=30).total_seconds()
 
 AWS_S3_OBJECT_PARAMETERS = {
     'Expires': (datetime.now() + timedelta(days=30)).strftime('%a, %d %b %Y 00:00:00 GMT'),
-    'CacheControl': 'max-age=%d, s-maxage=%d, must-revalidate'.format(AWS_EXPIRY, AWS_EXPIRY)
+    'CacheControl': f'max-age={AWS_EXPIRY}, s-maxage={AWS_EXPIRY}, must-revalidate'
 }
 
 {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
@@ -80,17 +80,17 @@ from storages.backends.s3boto3 import S3Boto3Storage
 StaticRootS3BotoStorage = lambda: S3Boto3Storage(location='static')
 MediaRootS3BotoStorage = lambda: S3Boto3Storage(location='media')
 DEFAULT_FILE_STORAGE = 'config.settings.production.MediaRootS3BotoStorage'
-MEDIA_URL = 'https://{}.s3.{}.amazonaws.com/media/'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_STORAGE_BUCKET_REGION}.amazonaws.com/media/'
 
 # Static Assets
 # ------------------------
-STATIC_URL = 'https://{}.s3.{}.amazonaws.com/static/'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
+STATIC_URL = 'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_STORAGE_BUCKET_REGION}.amazonaws.com/static/'
 STATICFILES_STORAGE = 'config.settings.production.StaticRootS3BotoStorage'
 AWS_PRELOAD_METADATA = True
 INSTALLED_APPS = ['collectfast'] + INSTALLED_APPS
 {% elif cookiecutter.static_and_media == 'Whitenoise (static) and Amazon S3 (media)' %}
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = 'https://{}.s3.{}.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME, AWS_STORAGE_BUCKET_REGION)
+MEDIA_URL = 'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_STORAGE_BUCKET_REGION}.amazonaws.com'
 {%- endif %}
 
 # EMAIL
@@ -126,7 +126,8 @@ DATABASES['default'] = env.db('DATABASE_URL')
 # CACHING
 # ------------------------------------------------------------------------------
 
-REDIS_LOCATION = '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 0)
+REDIS_URL = env('REDIS_URL', default='redis://127.0.0.1:6379')
+REDIS_LOCATION = f'{REDIS_URL}/0'
 # Heroku URL does not pass the DB number, so we parse it in
 CACHES = {
     'default': {
