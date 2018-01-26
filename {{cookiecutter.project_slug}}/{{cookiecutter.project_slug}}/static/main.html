@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-{% raw %}{% load static %}{% endraw %}
+{% raw %}
+{% load static %}
+{% load render_bundle from webpack_loader %}
+{% endraw %}
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -36,5 +39,5 @@
     {% if cookiecutter.analytics == 'Yandex Metrika' -%}{% raw %}<script>var YANDEX_METRIKA = {{ YANDEX_METRIKA }}</script>{% endraw %}{% endif %}
     {% if cookiecutter.use_sentry == 'y' %}{% raw %}<script>var SENTRY_PUBLIC_DSN = "{{ SENTRY_PUBLIC_DSN }}"</script>{% endraw %}{% endif %}
     {% raw %}<script type="text/javascript">var DEBUG = {{ DEBUG | lower }}</script>{% endraw %}
-    <script src="{% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}{% raw %}{% if DEBUG %}http://localhost:3000{% static 'dist/build.js' %}{% else %}{% static 'dist/build.js.gz' %}{% endif %}{% endraw %}{% else %}{% raw %}{% if DEBUG %}http://localhost:3000{% endif %}{% static 'dist/build.js' %}{% endraw %}{% endif %}" async></script>
+    {% raw %}{% render_bundle 'main' %}{% endraw %}
 </html>

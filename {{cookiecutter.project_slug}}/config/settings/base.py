@@ -45,7 +45,8 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
-    'django_extensions'
+    'django_extensions',
+    'webpack_loader'
 ]
 
 # Apps specific for this project go here.
@@ -225,6 +226,16 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.MultiPartParser',
         'rest_framework.parsers.FileUploadParser'
     ]
+}
+
+# WEBPACK LOADER CONFIGURATION
+# ------------------------------------------------------------------------------
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': str(ROOT_DIR.path('webpack.json'))
+    }
 }
 
 # AUTHENTICATION CONFIGURATION

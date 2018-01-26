@@ -1,7 +1,9 @@
 var webpack = require('webpack')
+var BundleTracker  = require('webpack-bundle-tracker')
 {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
 var S3Plugin = require('webpack-s3-plugin')
 var CompressionPlugin = require('compression-webpack-plugin')
+var amazonPath = 'https://' + process.env.AWS_STORAGE_BUCKET_NAME + '.s3.' + process.env.AWS_STORAGE_BUCKET_REGION + '.amazonaws.com/static/'
 {% endif %}
 
 // ==================== MAIN SETTINGS ====================
@@ -42,6 +44,9 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new BundleTracker({filename: './webpack.json'})
+    ],
     resolve: {
         alias: {'vue$': 'vue/dist/vue.esm.js'}
     }
@@ -51,9 +56,14 @@ module.exports = {
 if (process.env.NODE_ENV === 'production') {
     module.exports.devtool = '#source-map'
     module.exports.output = {
-        {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}path: '/',{% else %}path: '/app/staticfiles/dist/',{% endif %}
+        {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
+        path: '/',
+        publicPath: amazonPath,
+        {% else %}
+        path: '/app/staticfiles/dist/',
         publicPath: 'http://localhost:3000/static/dist/',
-        filename: 'build.js'
+        {% endif %}
+        filename: '[name]-[hash].js'
     },
     {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
     module.exports.module.rules.push(
@@ -63,12 +73,12 @@ if (process.env.NODE_ENV === 'production') {
             loader: 'string-replace-loader',
             query: {
                 search: new RegExp('/static/', 'g'),
-                replace: 'https://' + process.env.AWS_STORAGE_BUCKET_NAME + '.s3.' + process.env.AWS_STORAGE_BUCKET_REGION + '.amazonaws.com/static/'
+                replace: amazonPath
             }
         }
     ),
     {% endif %}
-    module.exports.plugins = [
+    module.exports.plugins.push(
         new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
         new webpack.LoaderOptionsPlugin({minimize: true}),
         new webpack.optimize.UglifyJsPlugin({sourceMap: true, compress: {warnings: false}}),
@@ -90,7 +100,7 @@ if (process.env.NODE_ENV === 'production') {
             basePath: 'static/dist/'
         })
         {% endif %}
-    ]
+    )
 }
 
 // ==================== DEVELOPMENT SETTINGS ====================
@@ -99,14 +109,14 @@ if (process.env.NODE_ENV === 'development') {
     module.exports.output = {
         path: '/app/{{cookiecutter.project_slug}}/static/dist/',
         publicPath: 'http://localhost:3000/static/dist/',
-        filename: 'build.js'
+        filename: '[name]-[hash].js'
     },
-    module.exports.plugins = [
+    module.exports.plugins.push(
         new webpack.DefinePlugin({'process.env': {NODE_ENV: '"development"'}}),
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.LoaderOptionsPlugin({vue: {loader: {js: 'babel-loader'}}})
-    ],
+    ),
     module.exports.devServer = {
         historyApiFallback: true,
         noInfo: true,

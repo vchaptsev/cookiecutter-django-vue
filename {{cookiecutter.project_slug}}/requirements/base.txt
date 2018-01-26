@@ -43,5 +43,8 @@ requests==2.11.1
 # improved REPL
 ptpython==0.36
 
+# webpack-loader
+django-webpack-loader==0.5.0
+
 {% if cookiecutter.static_and_media != 'Amazon S3 (static and media)' %}# static files
 whitenoise==3.3.1{% endif %}

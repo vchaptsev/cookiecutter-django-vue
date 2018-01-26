@@ -1,9 +1,9 @@
-### OSX ###
+# OSX
 .DS_Store
 .AppleDouble
 .LSOverride
 
-### SublimeText ###
+# SublimeText
 # cache files for sublime text
 *.tmlanguage.cache
 *.tmPreferences.cache
@@ -44,9 +44,7 @@ dist/
 # Pycharm
 .idea/*
 
-
 # Vim
-
 *~
 *.swp
 *.swo
@@ -64,4 +62,8 @@ node_modules/
 */media/
 */staticfiles/
 
+# Cache
 .cache/
+
+# Webpack tracker
+webpack.json

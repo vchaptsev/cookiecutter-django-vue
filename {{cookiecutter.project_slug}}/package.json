@@ -36,6 +36,7 @@
     {% if cookiecutter.analytics == "Yandex Metrika" %}"vue-yandex-metrika": "^1.4.0",{% endif %}
     "vuex": "^2.3.1",
     "webpack": "^2.6.1",
+    "webpack-bundle-tracker": "0.2.1",
     {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' %}"webpack-s3-plugin": "git+https://github.com/eyupci/s3-plugin-webpack.git#master",{% endif %}
     "webpack-dev-server": "^2.4.5"
   }
