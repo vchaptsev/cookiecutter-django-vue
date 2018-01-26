@@ -7,11 +7,7 @@ import Meta from 'vue-meta'
 {% if cookiecutter.analytics == 'Google Analytics' %}import VueAnalytics from 'vue-analytics'{% endif %}
 {% if cookiecutter.analytics == 'Yandex Metrika' %}import VueYandexMetrika from 'vue-yandex-metrika'{% endif %}
 {% if cookiecutter.use_sentry == 'y' %}import VueRaven from 'vue-raven'{% endif %}
-
 {% if cookiecutter.use_progressbar == 'y' %}import VueProgressBar from 'vue-progressbar'{% endif %}
-{% if cookiecutter.use_vue_material == 'y' %}
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.css'{% endif %}
 
 import Main from './Main.vue'
 
@@ -40,7 +36,6 @@ axios.interceptors.response.use((response) => {router.app.$Progress.finish(); re
 
 Vue.use(Meta)
 {% if cookiecutter.use_progressbar == 'y' %}Vue.use(VueProgressBar){% endif %}
-{% if cookiecutter.use_vue_material == 'y' %}Vue.use(VueMaterial){% endif %}
 
 new Vue({
     el: '#main',

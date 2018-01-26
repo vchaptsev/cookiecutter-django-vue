@@ -25,10 +25,6 @@
 
         <meta name="apple-mobile-web-app-title" content="{{cookiecutter.project_name}}">
         <meta name="application-name" content="{{cookiecutter.project_name}}">
-        {% if cookiecutter.use_vue_material == 'y' %}
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-        <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-        {% endif %}
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
 
@@ -41,5 +37,4 @@
     {% if cookiecutter.use_sentry == 'y' %}{% raw %}<script>var SENTRY_PUBLIC_DSN = "{{ SENTRY_PUBLIC_DSN }}"</script>{% endraw %}{% endif %}
     {% raw %}<script type="text/javascript">var DEBUG = {{ DEBUG | lower }}</script>{% endraw %}
     <script src="{% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}{% raw %}{% if DEBUG %}http://localhost:3000{% static 'dist/build.js' %}{% else %}{% static 'dist/build.js.gz' %}{% endif %}{% endraw %}{% else %}{% raw %}{% if DEBUG %}http://localhost:3000{% endif %}{% static 'dist/build.js' %}{% endraw %}{% endif %}" async></script>
-    {% if cookiecutter.use_ckeditor == "y" -%}<script src="https://cdn.ckeditor.com/4.7.3/basic/ckeditor.js" async></script>{% endif %}
 </html>

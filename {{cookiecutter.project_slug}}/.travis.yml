@@ -4,8 +4,4 @@ group: edge
 services: docker
 language: python
 python: '3.6'
-{% if cookiecutter.use_fabric_deployment == "y" %}cache: pip
-before_install:
-    - pip install Fabric3{% endif %}
 script: docker-compose run django py.test
-after_success: docker-compose down{% if cookiecutter.use_fabric_deployment == "y" %} && fab deploy{% endif %}

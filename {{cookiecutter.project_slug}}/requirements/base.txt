@@ -43,8 +43,5 @@ requests==2.11.1
 # improved REPL
 ptpython==0.36
 
-{% if cookiecutter.use_fabric_deployment == "y" %}# fabric for deployment
-Fabric3==1.13.1.post1{% endif %}
-
 {% if cookiecutter.static_and_media != 'Amazon S3 (static and media)' %}# static files
 whitenoise==3.3.1{% endif %}

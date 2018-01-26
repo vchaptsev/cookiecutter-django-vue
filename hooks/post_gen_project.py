@@ -3,8 +3,7 @@
 2. Renames env.example to .env
 3. Removes the taskapp if celery isn't going to be used
 4. Removes .travis.yml if travis isn't going to be used
-5. Removes fabfile.py if ssh_deployment isn't going to be used
-6. Removes files conventional to opensource projects only
+5. Removes files conventional to opensource projects only
 """
 import os
 import random
@@ -69,15 +68,6 @@ def remove_travis_file():
     for filename in [".travis.yml"]:
         os.remove(os.path.join(PROJECT_DIRECTORY, filename))
 
-
-def remove_fabric_file():
-    """
-    Removes fabric file if it isn't going to be used
-    """
-    for filename in ["fabfile.py"]:
-        os.remove(os.path.join(PROJECT_DIRECTORY, filename))
-
-
 # Removes files needed for the GPLv3 licence if it isn't going to be used.
 if '{{ cookiecutter.license}}' != 'GPLv3':
     remove_copying_files()
@@ -93,10 +83,6 @@ if '{{ cookiecutter.use_celery }}'.lower() == 'n':
 # Removes travis file if it isn't going to be used
 if '{{ cookiecutter.use_travis }}'.lower() == 'n':
     remove_travis_file()
-
-# Removes fabric file if it isn't going to be used
-if '{{ cookiecutter.use_fabric_deployment }}'.lower() == 'n':
-    remove_fabric_file()
 
 # Generates and saves random secret key
 set_secret_key(os.path.join(PROJECT_DIRECTORY, 'env.example'))  # env file

@@ -92,7 +92,6 @@ Answer the prompts with your own desired options. For example::
     ======================= DevOps ======================= [ ]:
     use_celery [y]: y
     use_travis [y]: y
-    use_fabric_deployment [n]: n
     use_sentry [y]: y
     use_mailhog [y]: y
     Select static_and_media:
@@ -106,9 +105,7 @@ Answer the prompts with your own desired options. For example::
     2 - Yandex metrika
     3 - None
     Choose from 1, 2, 3 [1]: 1
-    use_ckeditor [n]: n
     use_progressbar [n]: n
-    use_vue_material [n]: n
 
 Now you can start project with `docker-compose`_::
 
@@ -118,12 +115,4 @@ For production you'll need to fill out .env file and use docker-compose-prod.yml
 
     $ docker-compose -f docker-compose-prod.yml up --build -d
 
-
-If you want to use travis + fabric ssh deployment, you'll need to set up PRODUCTION_USER and PRODUCTION_PASSWORD `encrypted envs`_ to .travis.yml::
-
-    $ travis encrypt PRODUCTION_USER=user --add env.global
-    $ travis encrypt PRODUCTION_PASSWORD=secret --add env.global
-
-
-.. _`encrypted envs`: https://docs.travis-ci.com/user/environment-variables/#Encrypting-environment-variables
 .. _`docker-compose`: https://docs.docker.com/compose/
