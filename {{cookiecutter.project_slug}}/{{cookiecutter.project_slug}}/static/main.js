@@ -37,9 +37,10 @@ axios.interceptors.response.use((response) => {router.app.$Progress.finish(); re
 Vue.use(Meta)
 {% if cookiecutter.use_progressbar == 'y' %}Vue.use(VueProgressBar){% endif %}
 
+/* eslint-disable no-new */
 new Vue({
-    el: '#main',
-    router,
-    store,
-    render: h=> h(Main)
+  el: '#main',
+  router,
+  store,
+  render: h => h(Main)
 })
