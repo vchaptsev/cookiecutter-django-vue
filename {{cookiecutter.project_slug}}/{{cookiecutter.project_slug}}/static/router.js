@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import NotFoundComponent from './components/NotFoundComponent.vue'
+import FirstComponent from './components/FirstComponent.vue'
 
 const routes = [
-  {path: '*', component: NotFoundComponent}
+  {path: '*', component: FirstComponent}
 ]
 
 Vue.use(VueRouter)
