@@ -18,6 +18,7 @@ services:
     ports:
       - "8000:8000"
     command: /start.sh
+    restart: always
 
   postgres:
     build:
@@ -64,9 +65,9 @@ services:
       context: .
       dockerfile: ./compose/local/webpack/Dockerfile
     command: npm run dev
-    restart: always
     volumes:
       - .:/app
       - /app/node_modules
     ports:
       - "3000:3000"
+    restart: always
