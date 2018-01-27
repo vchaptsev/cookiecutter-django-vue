@@ -21,11 +21,6 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create(self, **extra_fields):
-        email = extra_fields.pop('email')
-        password = extra_fields.pop('password', '')
-        return self.create_user(email, password, **extra_fields)
-
     def create_user(self, email=None, password=None, **extra_fields):
         is_staff = extra_fields.pop('is_staff', False)
         is_superuser = extra_fields.pop('is_superuser', False)
@@ -53,6 +48,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     registered_at = models.DateTimeField(verbose_name='Registered at', auto_now_add=timezone.now)
 
+    # Fields settings
+    EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
 
     objects = UserManager()
@@ -73,12 +70,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         middle_name = self.middle_name[0] + '.' if self.middle_name else ''
 
         return f'{last_name} {first_name}{middle_name}'
-
-    def get_short_name(self):
-        return self.short_name
-
-    def get_full_name(self):
-        return self.full_name
 
     def __str__(self):
         return self.full_name
