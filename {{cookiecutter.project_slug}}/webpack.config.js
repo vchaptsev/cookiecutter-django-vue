@@ -3,7 +3,7 @@ var BundleTracker  = require('webpack-bundle-tracker')
 {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
 var S3Plugin = require('webpack-s3-plugin')
 var CompressionPlugin = require('compression-webpack-plugin')
-var amazonPath = 'https://' + process.env.AWS_STORAGE_BUCKET_NAME + '.s3.' + process.env.AWS_STORAGE_BUCKET_REGION + '.amazonaws.com/static/'
+var amazonPath = 'https://' + process.env.AWS_STORAGE_BUCKET_NAME + '.s3.' + process.env.AWS_STORAGE_BUCKET_REGION + '.amazonaws.com/static/dist/'
 {% endif %}
 
 // ==================== MAIN SETTINGS ====================

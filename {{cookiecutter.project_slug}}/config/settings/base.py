@@ -23,11 +23,11 @@ env = environ.Env()
 # as environment variables.
 try:
     env_file = str(ROOT_DIR.path('.env'))
-    print(f'Loading : {env_vile}')
+    print(f'Loading : {env_file}')
     env.read_env(env_file)
     print('The .env file has been loaded. See base.py for more information')
 except:
-    print('The .env file not found')
+    print('The .env file has been not loaded')
 
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
