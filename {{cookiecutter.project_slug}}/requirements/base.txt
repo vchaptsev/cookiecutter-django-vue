@@ -18,9 +18,6 @@ django-model-utils==3.0.0
 # Images
 Pillow==4.1.1
 
-# Password storage
-argon2-cffi==16.3.0
-
 # Python-PostgreSQL Database Adapter
 psycopg2==2.7.1
 

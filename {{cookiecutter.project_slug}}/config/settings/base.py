@@ -25,7 +25,7 @@ try:
     env_file = str(ROOT_DIR.path('.env'))
     print(f'Loading : {env_file}')
     env.read_env(env_file)
-    print('The .env file has been loaded. See base.py for more information')
+    print('The .env file has been loaded')
 except:
     print('The .env file has been not loaded')
 
@@ -192,13 +192,13 @@ TEMPLATES = [
 
 # PASSWORD STORAGE SETTINGS
 # ------------------------------------------------------------------------------
-# See https://docs.djangoproject.com/en/dev/topics/auth/passwords/#using-argon2-with-django
+# See https://docs.djangoproject.com/en/dev/ref/settings/#password-hashers
 PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher'
 ]
 
 # PASSWORD VALIDATION
