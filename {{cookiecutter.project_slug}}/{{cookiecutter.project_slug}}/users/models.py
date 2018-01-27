@@ -3,7 +3,6 @@ from uuid import uuid4
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
 
 
 class UserManager(BaseUserManager):
@@ -37,35 +36,35 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(verbose_name=_('Email'), unique=True, max_length=255)
-    first_name = models.CharField(verbose_name=_('First name'), max_length=30, blank=True)
-    last_name = models.CharField(verbose_name=_('Last name'), max_length=30, blank=True)
-    middle_name = models.CharField(verbose_name=_('Middle name'), max_length=30, blank=True)
+    email = models.EmailField(verbose_name='Email', unique=True, max_length=255)
+    first_name = models.CharField(verbose_name='First name', max_length=30, blank=True)
+    last_name = models.CharField(verbose_name='Last name', max_length=30, blank=True)
+    middle_name = models.CharField(verbose_name='Middle name', max_length=30, blank=True)
 
-    avatar = models.ImageField(verbose_name=_('Avatar'), blank=True)
-    phone = models.CharField(verbose_name=_('Phone'), max_length=30, blank=True)
-    position = models.CharField(verbose_name=_('Position'), max_length=150, blank=True)
-    address = models.CharField(verbose_name=_('Address'), max_length=300, blank=True)
-    token = models.UUIDField(verbose_name=_('Token'), default=uuid4, editable=False)
+    avatar = models.ImageField(verbose_name='Avatar', blank=True)
+    phone = models.CharField(verbose_name='Phone', max_length=30, blank=True)
+    position = models.CharField(verbose_name='Position', max_length=150, blank=True)
+    address = models.CharField(verbose_name='Address', max_length=300, blank=True)
+    token = models.UUIDField(verbose_name='Token', default=uuid4, editable=False)
 
-    is_admin = models.BooleanField(verbose_name=_('Admin'), default=False)
-    is_active = models.BooleanField(verbose_name=_('Active'), default=True)
-    is_staff = models.BooleanField(verbose_name=_('Staff'), default=False)
+    is_admin = models.BooleanField(verbose_name='Admin', default=False)
+    is_active = models.BooleanField(verbose_name='Active', default=True)
+    is_staff = models.BooleanField(verbose_name='Staff', default=False)
 
-    registered_at = models.DateTimeField(verbose_name=_('Registered at'), auto_now_add=timezone.now)
+    registered_at = models.DateTimeField(verbose_name='Registered at', auto_now_add=timezone.now)
 
     USERNAME_FIELD = 'email'
 
     objects = UserManager()
 
     class Meta:
-        verbose_name = _('User')
-        verbose_name_plural = _('Users')
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
 
     @property
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
-    full_name.fget.short_description = _('Full name')
+    full_name.fget.short_description = 'Full name'
 
     @property
     def short_name(self):
