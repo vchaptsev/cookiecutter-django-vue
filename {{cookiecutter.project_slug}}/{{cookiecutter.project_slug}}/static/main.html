@@ -38,6 +38,5 @@
     {% if cookiecutter.analytics == 'Google Analytics' -%}{% raw %}{% if GOOGLE_ANALYTICS %}<script>var GOOGLE_ANALYTICS = "{{ GOOGLE_ANALYTICS }}"</script>{% endif %}{% endraw %}{% endif %}
     {% if cookiecutter.analytics == 'Yandex Metrika' -%}{% raw %}<script>var YANDEX_METRIKA = {{ YANDEX_METRIKA }}</script>{% endraw %}{% endif %}
     {% if cookiecutter.use_sentry == 'y' %}{% raw %}<script>var SENTRY_PUBLIC_DSN = "{{ SENTRY_PUBLIC_DSN }}"</script>{% endraw %}{% endif %}
-    {% raw %}<script type="text/javascript">var DEBUG = {{ DEBUG | lower }}</script>{% endraw %}
     {% raw %}{% render_bundle 'main' %}{% endraw %}
 </html>

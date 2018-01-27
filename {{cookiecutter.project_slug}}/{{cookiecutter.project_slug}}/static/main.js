@@ -17,7 +17,7 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 {% if cookiecutter.use_sentry == 'y' %}
 // Sentry for logging frontend errors
-if (!DEBUG) {Vue.use(VueRaven, {dsn: SENTRY_PUBLIC_DSN})}
+if (process.env.NODE_ENV === 'production') {Vue.use(VueRaven, {dsn: SENTRY_PUBLIC_DSN})}
 {% endif %}
 
 {% if cookiecutter.analytics == 'Google Analytics' %}
