@@ -2,7 +2,6 @@ var webpack = require('webpack')
 var BundleTracker  = require('webpack-bundle-tracker')
 {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
 var S3Plugin = require('webpack-s3-plugin')
-var CompressionPlugin = require('compression-webpack-plugin')
 var amazonPath = 'https://' + process.env.AWS_STORAGE_BUCKET_NAME + '.s3.' + process.env.AWS_STORAGE_BUCKET_REGION + '.amazonaws.com/static/dist/'
 {% endif %}
 
@@ -83,7 +82,6 @@ if (process.env.NODE_ENV === 'production') {
         new webpack.LoaderOptionsPlugin({minimize: true}),
         new webpack.optimize.UglifyJsPlugin({sourceMap: true, compress: {warnings: false}}),
         {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
-        new CompressionPlugin({asset: '[path].gz'}),
         new S3Plugin({
             include: /.*\js/,
             s3Options: {
@@ -94,8 +92,7 @@ if (process.env.NODE_ENV === 'production') {
             s3UploadOptions: {
                 Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
                 Expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)),
-                CacheControl: 'max-age=604800, no-transform, public',
-                ContentEncoding: 'gzip'
+                CacheControl: 'max-age=604800, no-transform, public'
             },
             basePath: 'static/dist/'
         })
