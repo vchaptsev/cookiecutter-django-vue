@@ -6,7 +6,6 @@ class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Sequence(lambda n: f'user-{n}@example.com')
     password = factory.PostGenerationMethodCall('set_password', 'password')
     first_name = 'First'
-    middle_name = 'Middle'
     last_name = 'Last'
     token = uuid4()
 

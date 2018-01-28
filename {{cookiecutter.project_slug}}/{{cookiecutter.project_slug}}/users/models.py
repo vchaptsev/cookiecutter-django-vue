@@ -32,20 +32,14 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name='Email', unique=True, max_length=255)
-    first_name = models.CharField(verbose_name='First name', max_length=30, blank=True)
-    last_name = models.CharField(verbose_name='Last name', max_length=30, blank=True)
-    middle_name = models.CharField(verbose_name='Middle name', max_length=30, blank=True)
-
+    first_name = models.CharField(verbose_name='First name', max_length=30)
+    last_name = models.CharField(verbose_name='Last name', max_length=30)
     avatar = models.ImageField(verbose_name='Avatar', blank=True)
-    phone = models.CharField(verbose_name='Phone', max_length=30, blank=True)
-    position = models.CharField(verbose_name='Position', max_length=150, blank=True)
-    address = models.CharField(verbose_name='Address', max_length=300, blank=True)
     token = models.UUIDField(verbose_name='Token', default=uuid4, editable=False)
 
     is_admin = models.BooleanField(verbose_name='Admin', default=False)
     is_active = models.BooleanField(verbose_name='Active', default=True)
     is_staff = models.BooleanField(verbose_name='Staff', default=False)
-
     registered_at = models.DateTimeField(verbose_name='Registered at', auto_now_add=timezone.now)
 
     # Fields settings
@@ -65,11 +59,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def short_name(self):
-        last_name = self.last_name
-        first_name = self.first_name[0] + '.' if self.first_name else ''
-        middle_name = self.middle_name[0] + '.' if self.middle_name else ''
-
-        return f'{last_name} {first_name}{middle_name}'
+        return f'{self.last_name} {self.first_name[0]}.'
+    short_name.fget.short_description = 'Short name'
 
     def get_full_name(self):
         return self.full_name

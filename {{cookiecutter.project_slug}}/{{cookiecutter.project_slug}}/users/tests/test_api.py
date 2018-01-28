@@ -68,15 +68,25 @@ class UserTests(TestCase):
             UserFactory(email='test_reg@gmail.com')
 
             # user with email already exists
-            data = {'email': 'test_reg@gmail.com', 'password': 'password', 'first_name': 'first', 'last_name': 'last',
-                    'middle_name': 'middle', 'avatar': '', 'phone': '+999999999', 'position': 'position', 'address': 'address'}
+            data = {
+                'email': 'test_reg@gmail.com',
+                'password': 'password',
+                'first_name': 'first',
+                'last_name': 'last',
+                'avatar': ''
+            }
             response = self.post('user-register', data=data)
             self.response_200(response)
             self.assertEqual(response.json()['status'], 210)
 
             # successful registration
-            data = {'email': 'test_reg_new@gmail.com', 'password': 'password', 'first_name': 'first', 'last_name': 'last',
-                    'middle_name': 'middle', 'avatar': '', 'phone': '+999999999', 'position': 'position', 'address': 'address'}
+            data = {
+                'email': 'test_reg_new@gmail.com',
+                'password': 'password',
+                'first_name': 'first',
+                'last_name': 'last',
+                'avatar': ''
+            }
             response = self.post('user-register', data=data)
             self.response_201(response)
 

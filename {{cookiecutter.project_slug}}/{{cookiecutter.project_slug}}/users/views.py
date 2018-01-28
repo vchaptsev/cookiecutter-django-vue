@@ -31,7 +31,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def perform_update(self, serializer):
         user = serializer.save()
-        if self.request.data.get('password'):
+        if 'password' in self.request.data:
             user.set_password(self.request.data.get('password'))
             user.save()
 
@@ -61,7 +61,6 @@ class UserViewSet(viewsets.ModelViewSet):
     def register(self, request):
         last_name = request.data.get('last_name', None)
         first_name = request.data.get('first_name', None)
-        middle_name = request.data.get('middle_name', None)
         email = request.data.get('email', None)
         password = request.data.get('password', None)
 
@@ -73,7 +72,6 @@ class UserViewSet(viewsets.ModelViewSet):
                                    password=password,
                                    last_name=last_name,
                                    first_name=first_name,
-                                   middle_name=middle_name,
                                    is_admin=True)
         return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
 
