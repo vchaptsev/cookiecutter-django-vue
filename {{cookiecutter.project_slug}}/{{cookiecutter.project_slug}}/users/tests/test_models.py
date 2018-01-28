@@ -14,7 +14,7 @@ class TestUser(TestCase):
         self.assertEqual(self.user.get_full_name(), 'First Last')
 
     def test_short_name(self):
-        self.assertEqual(self.user.get_short_name(), 'Last F.M.')
+        self.assertEqual(self.user.get_short_name(), 'Last F.')
 
     def test_string_representation(self):
         self.assertEqual(str(self.user), 'First Last')

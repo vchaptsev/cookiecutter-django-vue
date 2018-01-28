@@ -21,7 +21,6 @@ class UserTests(TestCase):
         with self.login(username=self.user.email):
             response = self.get('user-profile')
             self.response_200(response)
-            self.assertEqual(response.json()['id'], self.user.id)
 
     def test_login(self):
         # success
@@ -58,7 +57,12 @@ class UserTests(TestCase):
 
     def test_create(self):
         with self.login(username=self.user.email):
-            data = {'email': 'test_create@gmail.com', 'password': 'password'}
+            data = {
+                'email': 'test_create@gmail.com',
+                'password': 'password',
+                'first_name': 'first_name',
+                'last_name': 'last_name'
+            }
             response = self.post('user-list', data=data)
             self.response_201(response)
             self.assertEqual(response.json()['email'], 'test_create@gmail.com')
