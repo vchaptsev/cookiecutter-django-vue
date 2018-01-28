@@ -30,7 +30,6 @@
     "eslint-plugin-vue": "^4.0.0",
     "file-loader": "^1.1.4",
     "foundation-sites": "^6.4.1",
-    "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' %}"string-replace-loader": "^1.3.0",{% endif %}

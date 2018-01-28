@@ -250,9 +250,6 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/login'
 LOGIN_URL = '/login'
 
-# SLUGLIFIER
-AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
-
 {% if cookiecutter.use_celery == 'y' %}
 # CELERY CONFIGURATION
 INSTALLED_APPS += ['{{cookiecutter.project_slug}}.taskapp.celery.CeleryConfig']

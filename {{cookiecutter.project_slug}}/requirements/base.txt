@@ -1,44 +1,33 @@
-wheel==0.29.0
-
 # Bleeding edge Django
 django=={{ cookiecutter.django }}
 
 # REST Framework
-djangorestframework==3.7.3
+djangorestframework==3.7.7
 
 # Configuration
-django-environ==0.4.3
+django-environ==0.4.4
 
 # custom extensions
-django-extensions==1.7.9
-
-# Models
-django-model-utils==3.0.0
+django-extensions==1.9.9
 
 # Images
-Pillow==4.1.1
+Pillow==5.0.0
 
 # Python-PostgreSQL Database Adapter
-psycopg2==2.7.1
-
-# Unicode slugification
-awesome-slugify==1.6.5
-
-# Time zones support
-pytz==2017.2
+psycopg2==2.7.3.2
 
 # Redis support
 django-redis==4.8.0
-redis>=2.10.5
+redis==2.10.6
 
 {% if cookiecutter.use_celery == "y" %}# Task Queue
-celery==3.1.25{% endif %}
+celery==4.1.0{% endif %}
 
 # Requests
-requests==2.11.1
+requests==2.18.4
 
 # improved REPL
-ptpython==0.36
+ptpython==0.41
 
 # webpack-loader
 django-webpack-loader==0.5.0
