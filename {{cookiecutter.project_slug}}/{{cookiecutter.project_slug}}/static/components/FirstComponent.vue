@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Cookiecutter Django Vue</h1>
     <p align="center">
-      <img src="https://i.imgur.com/SA8cjs8.png" />
+      <img src="https://i.imgur.com/SA8cjs8.png">
     </p>
   </div>
 </template>

@@ -8,7 +8,7 @@ module.exports = {
     browser: true
   },
   extends: [
-    'plugin:vue/essential',
+    'plugin:vue/recommended',
     'standard'
   ],
   plugins: [
