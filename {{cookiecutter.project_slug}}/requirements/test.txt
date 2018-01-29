@@ -1,8 +1,5 @@
 -r base.txt
 
-# tool for code style
-flake8==3.5.0
-
 # testing
 coverage==4.4.2
 factory-boy==2.9.2
