@@ -51,7 +51,7 @@ DOMAIN = env('DJANGO_DOMAIN', default='{{cookiecutter.domain}}')
 # Gunicorn
 INSTALLED_APPS += ['gunicorn']
 
-
+{% if cookiecutter.static_and_media != 'Whitenoise (static)' -%}
 # STORAGE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Uploaded Media Files
@@ -75,6 +75,7 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': f'max-age={AWS_EXPIRY}, s-maxage={AWS_EXPIRY}, must-revalidate'
 }
 
+{% endif %}
 {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
 from storages.backends.s3boto3 import S3Boto3Storage
 StaticRootS3BotoStorage = lambda: S3Boto3Storage(location='static')
