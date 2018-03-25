@@ -22,7 +22,6 @@ Features
 -   Frontend: [Vue](https://vuejs.org/)
 -   Backend: [Django](https://www.djangoproject.com/)
 -   Database: [PostgreSQL](https://www.postgresql.org/)
--   [Yarn](https://yarnpkg.com/) for npm-dependencies
 -   [Webpack](https://webpack.github.io/) for builds and [hot-development-server](https://webpack.js.org/concepts/hot-module-replacement/)
 -   Static & media files with [AmazonS3](https://aws.amazon.com/s3/) or [Whitenoise](http://whitenoise.evans.io/)
 -   Send emails via [Anymail](https://github.com/anymail/django-anymail)

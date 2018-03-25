@@ -24,8 +24,6 @@ logs
 *.log
 pip-log.txt
 npm-debug.log*
-package-lock.json
-yarn.lock
 
 # Unit test / coverage reports
 .coverage
