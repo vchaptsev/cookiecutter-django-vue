@@ -6,7 +6,7 @@ volumes:
   caddy: {}
 
 services:
-  django:{% if cookiecutter.use_celery == 'y' %} &django{% endif %}
+  django:
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
@@ -40,22 +40,6 @@ services:
 
   redis:
     image: redis:3.0
-
-{% if cookiecutter.use_celery == 'y' %}
-  celeryworker:
-    <<: *django
-    depends_on:
-     - postgres
-     - redis
-    command: /start-celeryworker.sh
-
-  celerybeat:
-    <<: *django
-    depends_on:
-      - postgres
-      - redis
-    command: /start-celerybeat.sh
-{% endif %}
 
   webpack:
     build:

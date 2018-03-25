@@ -1,7 +1,6 @@
 """
 1. Generates and saves random secret key
 2. Renames env.example to .env
-3. Removes the taskapp if celery isn't going to be used
 4. Removes .travis.yml if travis isn't going to be used
 5. Removes files conventional to opensource projects only
 """
@@ -49,16 +48,8 @@ def rename_env_file():
     os.rename(os.path.join(PROJECT_DIRECTORY, 'env.example'), os.path.join(PROJECT_DIRECTORY, '.env'))
 
 
-def remove_task_app():
-    """Removes celery files if celery isn't going to be used"""
-    task_app = os.path.join(PROJECT_DIRECTORY, '{{ cookiecutter.project_slug }}/taskapp')
-    shutil.rmtree(task_app)
 
-    celery_local = os.path.join(PROJECT_DIRECTORY, 'compose/local/django/celery')
-    shutil.rmtree(celery_local)
 
-    celery_prod = os.path.join(PROJECT_DIRECTORY, 'compose/production/django/celery')
-    shutil.rmtree(celery_prod)
 
 
 def remove_travis_file():
@@ -75,10 +66,6 @@ if '{{ cookiecutter.license}}' != 'GPLv3':
 # Remove files conventional to opensource projects only.
 if '{{ cookiecutter.license }}' == 'Not open source':
     remove_open_source_files()
-
-# Removes the taskapp if celery isn't going to be used
-if '{{ cookiecutter.use_celery }}'.lower() == 'n':
-    remove_task_app()
 
 # Removes travis file if it isn't going to be used
 if '{{ cookiecutter.use_travis }}'.lower() == 'n':

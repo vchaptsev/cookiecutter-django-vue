@@ -20,9 +20,6 @@ psycopg2==2.7.3.2
 django-redis==4.8.0
 redis==2.10.6
 
-{% if cookiecutter.use_celery == "y" %}# Task Queue
-celery==4.1.0{% endif %}
-
 # Requests
 requests==2.18.4
 

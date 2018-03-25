@@ -82,7 +82,6 @@ Answer the prompts with your own desired options. For example:
     1 - 1.11
     2 - 2.0
     Choose from 1, 2 [1]: 1
-    use_celery [y]: y
     use_mailhog [y]: y
     ======================= FRONTEND ===================== [ ]:
     Select analytics:
