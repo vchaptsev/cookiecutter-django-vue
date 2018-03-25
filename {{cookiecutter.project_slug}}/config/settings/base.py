@@ -15,20 +15,6 @@ APPS_DIR = ROOT_DIR.path('{{cookiecutter.project_slug}}')
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
 
-# ENVIRONS
-# ------------------------------------------------------------------------------
-# .env file, needs to be loaded in production environment
-# Operating System Environment variables have precedence over variables defined in the .env file,
-# that is to say variables from the .env files will only be used if not defined
-# as environment variables.
-try:
-    env_file = str(ROOT_DIR.path('.env'))
-    print(f'Loading : {env_file}')
-    env.read_env(env_file)
-    print('The .env file has been loaded')
-except:
-    print('The .env file has been not loaded')
-
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
@@ -45,8 +31,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
-    'django_extensions',
-    'webpack_loader'
+    'django_extensions'
 ]
 
 # Apps specific for this project go here.
@@ -133,7 +118,7 @@ USE_TZ = True
 STATIC_ROOT = str(ROOT_DIR('staticfiles'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [
@@ -149,7 +134,7 @@ STATICFILES_FINDERS = [
 # MEDIA CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(APPS_DIR('media'))
+MEDIA_ROOT = str(ROOT_DIR('media'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
@@ -229,15 +214,6 @@ REST_FRAMEWORK = {
     ]
 }
 
-# WEBPACK LOADER CONFIGURATION
-# ------------------------------------------------------------------------------
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'dist/',
-        'STATS_FILE': str(ROOT_DIR.path('webpack.json'))
-    }
-}
 
 # AUTHENTICATION CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -247,7 +223,9 @@ AUTHENTICATION_BACKENDS = [
 
 # Custom user app defaults
 # Select the correct user model
+{% if cookiecutter.custom_user == 'y' %}
 AUTH_USER_MODEL = 'users.User'
+{% endif %}
 LOGIN_REDIRECT_URL = '/login'
 LOGIN_URL = '/login'
 

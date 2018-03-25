@@ -2,10 +2,15 @@
     redir https://{{cookiecutter.domain}}
 }
 {% endif -%}
+
 {{cookiecutter.domain}} {
+    root /app
+
     proxy / django:5000 {
+        except /staticfiles /media
         transparent
     }
+
     log stdout
     errors stdout
     gzip

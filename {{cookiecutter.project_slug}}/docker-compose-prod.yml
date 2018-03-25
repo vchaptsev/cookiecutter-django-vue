@@ -1,15 +1,17 @@
 version: '2'
 
 volumes:
-  postgres_data: {}
-  postgres_backup: {}
-  caddy: {}
+  django-static:
+  django-media:
+
 
 services:
   django:
     build:
       context: .
-      dockerfile: ./compose/production/django/Dockerfile
+      dockerfile: ./compose/django/Dockerfile
+      args:
+          DJANGO_ENV: production
     depends_on:
       - postgres
       - redis
@@ -17,34 +19,28 @@ services:
     command: /gunicorn.sh
 
   postgres:
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - postgres_backup:/backups
+    image: postgres:9.6
     env_file: .env
 
   caddy:
-    build:
-      context: .
-      dockerfile: ./compose/production/caddy/Dockerfile
+    image: abiosoft/caddy
     depends_on:
       - django
     volumes:
-      - caddy:/root/.caddy
-    env_file: .env
+      - ./compose/caddy/Caddyfile:/etc/Caddyfile:ro  # configuration
+      - ./staticfiles:/app/staticfiles:ro  # serving django's statics
+      - ./media:/app/media:ro  # serving django's media
     ports:
-      - "0.0.0.0:80:80"
-      - "0.0.0.0:443:443"
+      - '80:80'
+      - '443:443'
 
   redis:
     image: redis:3.0
 
-  webpack:
+  vue:
     build:
       context: .
-      dockerfile: ./compose/production/webpack/Dockerfile
+      dockerfile: ./compose/vue/Dockerfile
     command: npm run build
     volumes:
       - .:/app

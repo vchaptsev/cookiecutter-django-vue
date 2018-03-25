@@ -1,34 +1,25 @@
 version: '2'
 
-volumes:
-  postgres_data_local: {}
-  postgres_backup_local: {}
-
 services:
   django:
     build:
       context: .
-      dockerfile: ./compose/local/django/Dockerfile
+      dockerfile: ./compose/django/Dockerfile
+      args:
+          DJANGO_ENV: development
     depends_on:
       - postgres
     volumes:
       - .:/app
-    environment:
-      - POSTGRES_USER={{cookiecutter.project_slug}}
     ports:
       - "8000:8000"
     command: /start.sh
     restart: always
+    env_file: .env
 
   postgres:
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
-    volumes:
-      - postgres_data_local:/var/lib/postgresql/data
-      - postgres_backup_local:/backups
-    environment:
-      - POSTGRES_USER={{cookiecutter.project_slug}}
+    image: postgres:9.6
+    env_file: .env
 
 {% if cookiecutter.use_mailhog == 'y' %}
   mailhog:
@@ -37,10 +28,10 @@ services:
       - "8025:8025"
 {% endif %}
 
-  webpack:
+  vue:
     build:
       context: .
-      dockerfile: ./compose/local/webpack/Dockerfile
+      dockerfile: ./compose/vue/Dockerfile
     command: npm run dev
     volumes:
       - .:/app
@@ -48,3 +39,4 @@ services:
     ports:
       - "3000:3000"
     restart: always
+    env_file: .env

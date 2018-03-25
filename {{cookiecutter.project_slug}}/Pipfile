@@ -1,0 +1,41 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+Django = "==2.0.3"
+djangorestframework = "*"
+django-environ = "*"
+django-extensions = "*"
+Pillow = "*"
+"psycopg2" = "*"
+django-redis = "*"
+redis = "*"
+requests = "*"
+ipython = "*"
+ptpython = "*"
+gevent = "*"
+gunicorn = "*"
+django-anymail = "*"
+raven = "*"
+
+[dev-packages]
+
+Werkzeug = "*"
+"flake8" = "*"
+coverage = "*"
+factory_boy = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-sugar = "*"
+pytest-django = "*"
+django-test-plus = "*"
+
+
+[requires]
+
+python_version = "3.6"

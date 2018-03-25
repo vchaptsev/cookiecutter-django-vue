@@ -69,7 +69,7 @@ def remove_users_app():
     shutil.rmtree(users_app)
 
     for filename in ['modules/auth.js', 'services/users.js']:
-        os.remove(os.path.join(PROJECT_DIRECTORY, '{{ cookiecutter.project_slug }}/static/'))
+        os.remove(os.path.join(PROJECT_DIRECTORY, '{{ cookiecutter.project_slug }}/static/store/' + filename))
 
 
 # Removes files needed for the GPLv3 licence if it isn't going to be used.

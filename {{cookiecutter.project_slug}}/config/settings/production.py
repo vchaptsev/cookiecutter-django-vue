@@ -6,13 +6,6 @@ Production Configurations
 {% if cookiecutter.use_sentry == 'y' -%}
 - Use Sentry for error logging
 {% endif %}
-{% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
-- Use Amazon S3 files
-{% elif cookiecutter.static_and_media == 'Whitenoise (static) and Amazon S3 (media)' %}
-- Use Whitenoise for static and Amazon S3 for media
-{% else %}
-- Use Whitenoise for static
-{% endif %}
 """
 
 import logging
@@ -27,13 +20,6 @@ from .base import *  # noqa
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-{% if cookiecutter.static_and_media != 'Amazon S3 (static and media)' -%}
-# Use Whitenoise to serve static files
-# See: https://whitenoise.readthedocs.io/
-WHITENOISE_MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware']
-MIDDLEWARE = WHITENOISE_MIDDLEWARE + MIDDLEWARE
-{% endif %}
 
 {% if cookiecutter.use_sentry == 'y' -%}
 # raven sentry client
@@ -51,49 +37,6 @@ DOMAIN = env('DJANGO_DOMAIN', default='{{cookiecutter.domain}}')
 # Gunicorn
 INSTALLED_APPS += ['gunicorn']
 
-{% if cookiecutter.static_and_media != 'Whitenoise (static)' -%}
-# STORAGE CONFIGURATION
-# ------------------------------------------------------------------------------
-# Uploaded Media Files
-# ------------------------
-# See: http://django-storages.readthedocs.io/en/latest/index.html
-INSTALLED_APPS += ['storages']
-
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-AWS_STORAGE_BUCKET_REGION = env('AWS_STORAGE_BUCKET_REGION')
-AWS_AUTO_CREATE_BUCKET = True
-AWS_QUERYSTRING_AUTH = False
-AWS_IS_GZIPPED = True
-
-# AWS cache settings
-AWS_EXPIRY = timedelta(days=30).total_seconds()
-
-AWS_S3_OBJECT_PARAMETERS = {
-    'Expires': (datetime.now() + timedelta(days=30)).strftime('%a, %d %b %Y 00:00:00 GMT'),
-    'CacheControl': f'max-age={AWS_EXPIRY}, s-maxage={AWS_EXPIRY}, must-revalidate'
-}
-
-{% endif %}
-{% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
-from storages.backends.s3boto3 import S3Boto3Storage
-StaticRootS3BotoStorage = lambda: S3Boto3Storage(location='static')
-MediaRootS3BotoStorage = lambda: S3Boto3Storage(location='media')
-DEFAULT_FILE_STORAGE = 'config.settings.production.MediaRootS3BotoStorage'
-MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_STORAGE_BUCKET_REGION}.amazonaws.com/media/'
-
-# Static Assets
-# ------------------------
-STATIC_URL = 'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_STORAGE_BUCKET_REGION}.amazonaws.com/static/'
-STATICFILES_STORAGE = 'config.settings.production.StaticRootS3BotoStorage'
-AWS_PRELOAD_METADATA = True
-INSTALLED_APPS = ['collectfast'] + INSTALLED_APPS
-{% elif cookiecutter.static_and_media == 'Whitenoise (static) and Amazon S3 (media)' %}
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = 'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_STORAGE_BUCKET_REGION}.amazonaws.com'
-{%- endif %}
-
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL', default='{{cookiecutter.project_name}} <noreply@{{cookiecutter.domain}}>')
@@ -106,7 +49,7 @@ ANYMAIL = {
     'MAILGUN_API_KEY': env('DJANGO_MAILGUN_API_KEY'),
     'MAILGUN_SENDER_DOMAIN': env('MAILGUN_SENDER_DOMAIN')
 }
-EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
 
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------

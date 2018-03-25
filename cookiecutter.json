@@ -5,7 +5,7 @@
     "domain": "{{ cookiecutter.project_slug }}.com",
     "description": "Short description",
 
-    "author": "Daniel Roy Greenfeld",
+    "author": "Your Name",
     "email": "admin@{{ cookiecutter.domain }}",
 
     "version": "0.1.0",
@@ -14,10 +14,8 @@
     "======================= DEVOPS =======================": " ",
     "use_travis": "y",
     "use_sentry": "y",
-    "static_and_media": ["Amazon S3 (static and media)", "Whitenoise (static) and Amazon S3 (media)", "Whitenoise (static)"],
 
     "======================= BACKEND ======================": " ",
-    "django": ["1.11", "2.0"],
     "use_mailhog": "y",
     "custom_user": "n",
 

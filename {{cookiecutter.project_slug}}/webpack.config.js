@@ -1,9 +1,4 @@
 var webpack = require('webpack')
-var BundleTracker  = require('webpack-bundle-tracker')
-{% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
-var S3Plugin = require('webpack-s3-plugin')
-var amazonPath = 'https://' + process.env.AWS_STORAGE_BUCKET_NAME + '.s3.' + process.env.AWS_STORAGE_BUCKET_REGION + '.amazonaws.com/static/dist/'
-{% endif %}
 
 // ==================== MAIN SETTINGS ====================
 module.exports = {
@@ -43,9 +38,7 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new BundleTracker({filename: './webpack.json'})
-    ],
+    plugins: [],
     resolve: {
         alias: {'vue$': 'vue/dist/vue.esm.js'}
     }
@@ -55,48 +48,14 @@ module.exports = {
 if (process.env.NODE_ENV === 'production') {
     module.exports.devtool = '#source-map'
     module.exports.output = {
-        {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
-        path: '/',
-        publicPath: amazonPath,
-        {% else %}
         path: '/app/staticfiles/dist/',
-        publicPath: 'http://localhost:3000/static/dist/',
-        {% endif %}
-        filename: '[name]-[hash].js'
+        publicPath: 'http://localhost:3000/staticfiles/dist/',
+        filename: 'bundle.js'
     },
-    {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
-    module.exports.module.rules.push(
-        {
-            enforce: 'pre',
-            test: /\.vue$/,
-            loader: 'string-replace-loader',
-            query: {
-                search: new RegExp('/static/', 'g'),
-                replace: amazonPath
-            }
-        }
-    ),
-    {% endif %}
     module.exports.plugins.push(
         new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
         new webpack.LoaderOptionsPlugin({minimize: true}),
-        new webpack.optimize.UglifyJsPlugin({sourceMap: true, compress: {warnings: false}}),
-        {% if cookiecutter.static_and_media == 'Amazon S3 (static and media)' -%}
-        new S3Plugin({
-            include: /.*\js/,
-            s3Options: {
-                accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-                region: process.env.AWS_STORAGE_BUCKET_REGION
-            },
-            s3UploadOptions: {
-                Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
-                Expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)),
-                CacheControl: 'max-age=604800, no-transform, public'
-            },
-            basePath: 'static/dist/'
-        })
-        {% endif %}
+        new webpack.optimize.UglifyJsPlugin({sourceMap: true, compress: {warnings: false}})
     )
 }
 
@@ -105,8 +64,8 @@ if (process.env.NODE_ENV === 'development') {
     module.exports.devtool = '#eval-source-map',
     module.exports.output = {
         path: '/app/{{cookiecutter.project_slug}}/static/dist/',
-        publicPath: 'http://localhost:3000/static/dist/',
-        filename: '[name]-[hash].js'
+        publicPath: 'http://localhost:3000/staticfiles/dist/',
+        filename: 'bundle.js'
     },
     module.exports.plugins.push(
         new webpack.DefinePlugin({'process.env': {NODE_ENV: '"development"'}}),

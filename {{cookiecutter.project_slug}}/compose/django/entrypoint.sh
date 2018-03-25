@@ -21,9 +21,6 @@ if [ -z "$POSTGRES_USER" ]; then
 fi
 
 export DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_USER
-{% if cookiecutter.use_celery == 'y' %}
-export CELERY_BROKER_URL=$REDIS_URL/0
-{% endif %}
 
 function postgres_ready(){
 python << END

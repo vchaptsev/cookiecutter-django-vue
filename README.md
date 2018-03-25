@@ -22,8 +22,8 @@ Features
 -   Frontend: [Vue](https://vuejs.org/)
 -   Backend: [Django](https://www.djangoproject.com/)
 -   Database: [PostgreSQL](https://www.postgresql.org/)
+-   pipenv[https://github.com/pypa/pipenv] for python-requirements
 -   [Webpack](https://webpack.github.io/) for builds and [hot-development-server](https://webpack.js.org/concepts/hot-module-replacement/)
--   Static & media files with [AmazonS3](https://aws.amazon.com/s3/) or [Whitenoise](http://whitenoise.evans.io/)
 -   Send emails via [Anymail](https://github.com/anymail/django-anymail)
     (using [Mailgun](http://www.mailgun.com/) by default)
 
@@ -40,9 +40,9 @@ Optional Integrations
 Usage
 -----
 
-First, get `cookiecutter`:
+First, get `cookiecutter` and `pipenv`:
 
-    $ pip install cookiecutter
+    $ pip install cookiecutter pipenv
 
 Now run it against this repo:
 
@@ -58,7 +58,7 @@ Answer the prompts with your own desired options. For example:
     project_slug [website]: website
     domain [website.com]: website.com
     description [Short description]: My awesome website
-    author [Daniel Roy Greenfeld]: Your Name
+    author [Your Name]: Your Name
     email [<admin@website.com>]: <admin@website.com>
     version [0.1.0]: 0.1.0
     Select license:
@@ -71,16 +71,7 @@ Answer the prompts with your own desired options. For example:
     ======================= DEVOPS ======================= [ ]:
     use_travis [y]: y
     use_sentry [y]: y
-    Select static_and_media:
-    1 - Amazon S3 (static and media)
-    2 - Whitenoise (static) and Amazon S3 (media)
-    3 - Whitenoise (static)
-    Choose from 1, 2, 3 [1]: 1
     ======================= BACKEND ====================== [ ]:
-    Select django:
-    1 - 1.11
-    2 - 2.0
-    Choose from 1, 2 [1]: 1
     use_mailhog [y]: y
     custom_user [n]: n
     ======================= FRONTEND ===================== [ ]:
