@@ -19,6 +19,7 @@
     "======================= BACKEND ======================": " ",
     "django": ["1.11", "2.0"],
     "use_mailhog": "y",
+    "custom_user": "n",
 
     "======================= FRONTEND =====================": " ",
     "analytics": ["Google Analytics", "Yandex Metrika", "None"],

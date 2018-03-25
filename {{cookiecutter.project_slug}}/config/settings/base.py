@@ -1,4 +1,4 @@
-"""
+'''
 Django settings for {{cookiecutter.project_name}} project.
 
 For more information on this file, see
@@ -6,7 +6,7 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
-"""
+'''
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 3  # ({{cookiecutter.project_slug}}/config/settings/base.py - 3 = {{cookiecutter.project_slug}}/)
@@ -52,7 +52,8 @@ THIRD_PARTY_APPS = [
 # Apps specific for this project go here.
 LOCAL_APPS = [
     # Your stuff: custom apps go here
-    '{{ cookiecutter.project_slug }}.users.apps.UsersConfig'
+    {% if cookiecutter.custom_user == 'y' %}
+    '{{ cookiecutter.project_slug }}.users.apps.UsersConfig'{% endif %}
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -91,7 +92,7 @@ EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.s
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [
-    ("""{{cookiecutter.author}}""", '{{cookiecutter.email}}')
+    ('''{{cookiecutter.author}}''', '{{cookiecutter.email}}')
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers

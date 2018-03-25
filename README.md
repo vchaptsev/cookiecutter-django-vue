@@ -62,7 +62,7 @@ Answer the prompts with your own desired options. For example:
     author [Daniel Roy Greenfeld]: Your Name
     email [<admin@website.com>]: <admin@website.com>
     version [0.1.0]: 0.1.0
-    Select license: 
+    Select license:
     1 - MIT
     2 - BSD
     3 - GPLv3
@@ -83,6 +83,7 @@ Answer the prompts with your own desired options. For example:
     2 - 2.0
     Choose from 1, 2 [1]: 1
     use_mailhog [y]: y
+    custom_user [n]: n
     ======================= FRONTEND ===================== [ ]:
     Select analytics:
     1 - Google Analytics
