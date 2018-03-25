@@ -1,4 +1,4 @@
-version: '2'
+version: '3.6'
 
 volumes:
     postgres_data: {}
@@ -13,6 +13,8 @@ services:
     depends_on:
       - postgres
       - redis
+    volumes:
+      - .:/app
     env_file: .env
     command: /gunicorn.sh
 
@@ -27,6 +29,7 @@ services:
     depends_on:
       - django
     volumes:
+      - ./compose/caddy/certs:/root/.caddy  # saving certificates
       - ./compose/caddy/Caddyfile:/etc/Caddyfile:ro  # configuration
       - ./staticfiles:/app/staticfiles:ro  # serving django's statics
       - ./media:/app/media:ro  # serving django's media
