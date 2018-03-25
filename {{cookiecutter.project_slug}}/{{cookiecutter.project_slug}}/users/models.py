@@ -32,8 +32,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name='Email', unique=True, max_length=255)
-    first_name = models.CharField(verbose_name='First name', max_length=30)
-    last_name = models.CharField(verbose_name='Last name', max_length=30)
+    first_name = models.CharField(verbose_name='First name', max_length=30, default='first')
+    last_name = models.CharField(verbose_name='Last name', max_length=30, default='last')
     avatar = models.ImageField(verbose_name='Avatar', blank=True)
     token = models.UUIDField(verbose_name='Token', default=uuid4, editable=False)
 
