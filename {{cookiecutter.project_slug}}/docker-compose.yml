@@ -1,5 +1,8 @@
 version: '2'
 
+volumes:
+    postgres_data: {}
+
 services:
   django:
     build:
@@ -19,6 +22,8 @@ services:
 
   postgres:
     image: postgres:9.6
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     env_file: .env
 
 {% if cookiecutter.use_mailhog == 'y' %}

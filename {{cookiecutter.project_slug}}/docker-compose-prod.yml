@@ -1,9 +1,7 @@
 version: '2'
 
 volumes:
-  django-static:
-  django-media:
-
+    postgres_data: {}
 
 services:
   django:
@@ -20,6 +18,8 @@ services:
 
   postgres:
     image: postgres:9.6
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     env_file: .env
 
   caddy:
