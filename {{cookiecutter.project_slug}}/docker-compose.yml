@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.3'
 
 volumes:
     postgres_data: {}
@@ -25,6 +25,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file: .env
+
 
 {% if cookiecutter.use_mailhog == 'y' %}
   mailhog:
