@@ -1,7 +1,3 @@
-<a href="https://travis-ci.org/vchaptsev/cookiecutter-django-vue">
-  <img src="https://travis-ci.org/vchaptsev/cookiecutter-django-vue.svg?branch=master" />
-</a>
-
 Cookiecutter Django-Vue
 =======================
 
@@ -22,7 +18,7 @@ Features
 -   Frontend: [Vue](https://vuejs.org/)
 -   Backend: [Django](https://www.djangoproject.com/)
 -   Database: [PostgreSQL](https://www.postgresql.org/)
--   pipenv[https://github.com/pypa/pipenv] for python-requirements
+-   [pipenv](https://github.com/pypa/pipenv) for python-requirements
 -   [Webpack](https://webpack.github.io/) for builds and [hot-development-server](https://webpack.js.org/concepts/hot-module-replacement/)
 -   Send emails via [Anymail](https://github.com/anymail/django-anymail)
     (using [Mailgun](http://www.mailgun.com/) by default)
