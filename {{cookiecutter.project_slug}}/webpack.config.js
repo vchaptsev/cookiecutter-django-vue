@@ -63,7 +63,7 @@ if (process.env.NODE_ENV === 'production') {
 if (process.env.NODE_ENV === 'development') {
     module.exports.devtool = '#eval-source-map',
     module.exports.output = {
-        path: '/app/{{cookiecutter.project_slug}}/static/dist/',
+        path: '/app/{{cookiecutter.project_slug}}/staticfiles/dist/',
         publicPath: 'http://localhost:3000/staticfiles/dist/',
         filename: 'bundle.js'
     },
