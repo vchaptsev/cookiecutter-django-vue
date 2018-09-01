@@ -1,7 +1,6 @@
 """
 Production Configurations
 
-- Use mailgun to send emails
 - Use Redis for cache
 {% if cookiecutter.use_sentry == 'y' -%}
 - Use Sentry for error logging
@@ -17,7 +16,7 @@ from .base import *  # noqa
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Raises ImproperlyConfigured exception if DJANGO_SECRET_KEY not in os.environ
-SECRET_KEY = env('DJANGO_SECRET_KEY')
+SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -31,25 +30,11 @@ MIDDLEWARE = RAVEN_MIDDLEWARE + MIDDLEWARE
 
 
 # SITE CONFIGURATION
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[''])
-DOMAIN = env('DJANGO_DOMAIN', default='{{cookiecutter.domain}}')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+DOMAIN = env.str.str('DOMAIN')
 
 # Gunicorn
 INSTALLED_APPS += ['gunicorn']
-
-# EMAIL
-# ------------------------------------------------------------------------------
-DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL', default='{{cookiecutter.project_name}} <noreply@{{cookiecutter.domain}}>')
-EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[{{cookiecutter.project_name}}]')
-SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
-
-# Anymail with Mailgun
-INSTALLED_APPS += ['anymail']
-ANYMAIL = {
-    'MAILGUN_API_KEY': env('DJANGO_MAILGUN_API_KEY'),
-    'MAILGUN_SENDER_DOMAIN': env('MAILGUN_SENDER_DOMAIN')
-}
-EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
 
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -87,8 +72,8 @@ CACHES = {
 
 {% if cookiecutter.use_sentry == 'y' -%}
 # Sentry Configuration
-SENTRY_DSN = env('SENTRY_DSN')
-SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT', default='raven.contrib.django.raven_compat.DjangoClient')
+SENTRY_DSN = env.str('SENTRY_DSN')
+SENTRY_CLIENT = env.str('DJANGO_SENTRY_CLIENT', default='raven.contrib.django.raven_compat.DjangoClient')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,

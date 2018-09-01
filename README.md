@@ -19,8 +19,6 @@ Features
 -   Backend: [Django](https://www.djangoproject.com/)
 -   Database: [PostgreSQL](https://www.postgresql.org/)
 <!-- -   [pipenv](https://github.com/pypa/pipenv) for python-requirements -->
--   Send emails via [Anymail](https://github.com/anymail/django-anymail)
-    (using [Mailgun](http://www.mailgun.com/) by default)
 
 Optional Integrations
 ---------------------

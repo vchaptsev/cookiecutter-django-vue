@@ -97,14 +97,3 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
-    @list_route(methods=['POST'])
-    def validate_email(self, request):
-        if settings.DJANGO_MAILGUN_API_PUB:
-            response = requests.get(
-                'https://api.mailgun.net/v3/address/validate',
-                auth=('api', settings.DJANGO_MAILGUN_API_PUB),
-                params={'address': request.data.get('email')})
-            return Response(response.json())
-        else:
-            return Response({'is_valid': True})

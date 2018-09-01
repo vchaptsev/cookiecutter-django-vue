@@ -232,9 +232,6 @@ LOGIN_URL = '/login'
 # Location of root django.contrib.admin URL
 ADMIN_URL = r'^admin/'
 
-# Mailgun api
-DJANGO_MAILGUN_API_PUB = env('DJANGO_MAILGUN_API_PUB', default=None)
-
 {% if cookiecutter.analytics == 'Google Analytics' -%}
 # Google Analytics
 GOOGLE_ANALYTICS = env('GOOGLE_ANALYTICS', default=None){% endif %}
