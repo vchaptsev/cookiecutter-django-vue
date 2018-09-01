@@ -1,7 +1,7 @@
 {
   "name": "{{cookiecutter.project_slug}}",
   "description": "{{cookiecutter.description}}",
-  "version": "{{cookiecutter.version}}",
+  "version": "0.1.0",
   "author": "{{cookiecutter.author}}",
   {% if cookiecutter.license != 'Not open source' %}"license": "{{cookiecutter.license}}",{% endif %}
   {% if cookiecutter.license == 'Not open source' %}"private": true,{% endif %}

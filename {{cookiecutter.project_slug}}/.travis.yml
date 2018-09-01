@@ -1,8 +1,0 @@
-sudo: required
-dist: trusty
-group: edge
-services: docker
-language: python
-python: '3.6'
-script: docker-compose run django pipenv check && \
-        docker-compose run django py.test
