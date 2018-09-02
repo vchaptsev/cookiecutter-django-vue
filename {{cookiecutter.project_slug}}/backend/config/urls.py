@@ -1,36 +1,25 @@
-from django.conf import settings
-from django.conf.urls import include, url
-from django.conf.urls.static import static
+from django.urls import path
 from django.contrib import admin
-from django.views.generic import TemplateView
-from django.contrib.auth.views import logout
+from django.contrib.auth import logout
+{% if cookiecutter.api == 'REST' %}
+from django.conf.urls import include
 
 from config.api import api
+{% elif cookiecutter.api == 'GraphQL' %}
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+
+from graphene_django.views import GraphQLView
+{% endif %}
+
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^api/', include(api.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^logout/$', logout, {'next_page': '/'}, name='logout')
+    path('admin/', admin.site.urls, name='admin'),
+    path('logout/', logout, {'next_page': '/'}, name='logout'),
+    {% if cookiecutter.api == 'REST' %}
+    path('api/', include(api.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    {% elif cookiecutter.api == 'GraphQL' %}
+    path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=settings.DEBUG))),
+    {% endif %}
 ]
-
-if settings.DEBUG:
-    # Media urls for development
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-class ExtraContextTemplateView(TemplateView):
-    """
-    Hack to pass some content to Template View
-    """
-    def get_context_data(self, **kwargs):
-        context = super(ExtraContextTemplateView, self).get_context_data(**kwargs)
-        context['DEBUG'] = settings.DEBUG
-        {% if cookiecutter.use_sentry == 'y' %}context['SENTRY_PUBLIC_DSN'] = settings.SENTRY_PUBLIC_DSN{% endif %}
-        {% if cookiecutter.analytics == 'Yandex Metrika' -%}context['YANDEX_METRIKA'] = settings.YANDEX_METRIKA{% endif %}
-        {% if cookiecutter.analytics == 'Google Analytics' -%}context['GOOGLE_ANALYTICS'] = settings.GOOGLE_ANALYTICS{% endif %}
-        return context
-
-
-# App: Vue routing
-urlpatterns += [url(r'^', ExtraContextTemplateView.as_view(template_name='main.html'))]

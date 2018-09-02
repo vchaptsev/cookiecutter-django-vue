@@ -1,3 +1,7 @@
+<a href="https://travis-ci.org/vchaptsev/cookiecutter-django-vue">
+  <img src="https://travis-ci.org/vchaptsev/cookiecutter-django-vue.svg?branch=master" />
+</a>
+
 Cookiecutter Django-Vue
 =======================
 
@@ -8,17 +12,16 @@ inspired by [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django
   <img src="https://i.imgur.com/SA8cjs8.png" />
 </p>
 
-
 Features
 --------
 
 -   [Docker](https://www.docker.com/)
 -   [12 Factor](http://12factor.net/)
-<!-- -   Server: [Caddy](https://caddyserver.com/) -->
--   Frontend: [Vue](https://vuejs.org/) + vue-cli
+-   Server: [Nginx](https://nginx.org/)
+-   Frontend: [Vue](https://vuejs.org/) + [vue-cli](https://cli.vuejs.org/)
 -   Backend: [Django](https://www.djangoproject.com/)
 -   Database: [PostgreSQL](https://www.postgresql.org/)
-<!-- -   [pipenv](https://github.com/pypa/pipenv) for python-requirements -->
+-   API: REST or GraphQL
 
 Optional Integrations
 ---------------------
@@ -27,7 +30,9 @@ Optional Integrations
 
 -   Integration with [MailHog](https://github.com/mailhog/MailHog) for local email testing
 -   Integration with [Sentry](https://sentry.io/welcome/) for frontend and backend errors logging
+-   Integration with [Portainer](https://portainer.io/) (management UI for docker)
 -   Integration with [Google Analytics](https://www.google.com/analytics/) or [Yandex Metrika](https://tech.yandex.ru/metrika/) for web-analytics
+-   Automatic database backups
 
 Usage
 -----
@@ -45,23 +50,32 @@ will be created for you.
 
 Answer the prompts with your own desired options. For example:
 
-    ======================= GENERAL ====================== [ ]:
+    ======================== INFO ======================= [ ]:
     project_name [Project Name]: Website
     project_slug [website]: website
     description [Short description]: My awesome website
     author [Your Name]: Your Name
     email [<admin@website.com>]: <admin@website.com>
-    ======================= DEVOPS ======================= [ ]:
+    ====================== GENERAL ====================== [ ]:
+    Select api:
+    1 - REST
+    2 - GraphQL
+    Choose from 1, 2 [1]: 2
+    backups [y]: y
+    ==================== INTEGRATIONS =================== [ ]:
     use_sentry [y]: y
-    ======================= BACKEND ====================== [ ]:
+    use_portainer [y]: y
     use_mailhog [y]: y
-    custom_user [n]: n
-    ======================= FRONTEND ===================== [ ]:
     Select analytics:
     1 - Google Analytics
     2 - Yandex Metrika
     3 - None
     Choose from 1, 2, 3 [1]: 2
+
+Project creation will cause some odd newlines and linter errors, so I'd recommend:
+
+    $ autopep8 -r --in-place --aggressive --aggressive .
+    $ npm run lint --fix
 
 Now you can start project with
 [docker-compose](https://docs.docker.com/compose/):
@@ -72,3 +86,9 @@ For production you'll need to fill out `.env` file and use
 `docker-compose-prod.yml` file:
 
     $ docker-compose -f docker-compose-prod.yml up --build -d
+
+
+Contributing
+------------
+
+Help and feedback are welcome :)

@@ -1,5 +1,5 @@
 {
-    "======================= GENERAL ======================": " ",
+    "======================== INFO =======================": " ",
     "project_name": "Project Name",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
     "domain": "{{ cookiecutter.project_slug }}.com",
@@ -8,14 +8,13 @@
     "author": "Your Name",
     "email": "admin@{{ cookiecutter.domain }}",
 
-    "======================= DEVOPS =======================": " ",
-    "use_travis": "y",
+    "====================== GENERAL ======================": " ",
+    "api": ["REST", "GraphQL"],
+    "backups": "y",
+    
+    "==================== INTEGRATIONS ===================": " ",
     "use_sentry": "y",
-
-    "======================= BACKEND ======================": " ",
+    "use_portainer": "y",
     "use_mailhog": "y",
-    "custom_user": "n",
-
-    "======================= FRONTEND =====================": " ",
-    "analytics": ["Google Analytics", "Yandex Metrika", "None"],
+    "analytics": ["Google Analytics", "Yandex Metrika", "None"]
 }

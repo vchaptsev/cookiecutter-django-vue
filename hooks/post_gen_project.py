@@ -1,7 +1,7 @@
 """
 1. Generates and saves random secret key
 2. Renames env.example to .env
-3. Removes users app if it isn't going to be used
+3. Deletes unused API files
 """
 import os
 import random
@@ -12,9 +12,9 @@ import shutil
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
 
-def set_secret_key(file_location):
+def set_secret_key():
     """ Generates and saves random secret key """
-    with open(file_location) as f:
+    with open(os.path.join(PROJECT_DIRECTORY, 'env.example')) as f:
         file_ = f.read()
 
     punctuation = string.punctuation.replace('"', '').replace("'", '').replace('\\', '')
@@ -22,7 +22,7 @@ def set_secret_key(file_location):
     file_ = file_.replace('CHANGEME!!!', secret, 1)
 
     # Write the results
-    with open(file_location, 'w') as f:
+    with open(os.path.join(PROJECT_DIRECTORY, 'env.example'), 'w') as f:
         f.write(file_)
 
 
@@ -30,20 +30,29 @@ def rename_env_file():
     """ Renames env file """
     os.rename(os.path.join(PROJECT_DIRECTORY, 'env.example'), os.path.join(PROJECT_DIRECTORY, '.env'))
 
-def remove_users_app():
-    """ Removes users app if it isn't going to be used """
-    users_app = os.path.join(PROJECT_DIRECTORY, '{{ cookiecutter.project_slug }}/users')
-    shutil.rmtree(users_app)
 
-    for filename in ['modules/auth.js', 'services/users.js']:
-        os.remove(os.path.join(PROJECT_DIRECTORY, '{{ cookiecutter.project_slug }}/static/store/' + filename))
+def delete_api_files():
+    """ Deletes unused API files """
+    if '{{ cookiecutter.api }}' == 'REST':
+        files = [
+            '.graphqlrc',
+            'backend/config/schema.py',
+            'backend/apps/users/schema.py',
+            'frontend/src/apollo.js',
+        ]
+        shutil.rmtree(os.path.join(PROJECT_DIRECTORY, 'frontend/src/graphql'))
+    else:
+        files = [
+            'backend/config/api.py',
+            'backend/apps/users/views.py',
+            'backend/apps/users/serializers.py',
+        ]
+        shutil.rmtree(os.path.join(PROJECT_DIRECTORY, 'frontend/src/store'))
+    
+    for filename in files:
+        os.remove(os.path.join(PROJECT_DIRECTORY, filename))
 
-# Removes users app if it isn't going to be used
-if '{{ cookiecutter.custom_user }}' == 'n':
-    remove_users_app()
 
-# Generates and saves random secret key
-set_secret_key(os.path.join(PROJECT_DIRECTORY, 'env.example'))  # env file
-
-# Renames env file
+set_secret_key()
 rename_env_file()
+delete_api_files()
