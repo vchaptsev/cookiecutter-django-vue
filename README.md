@@ -18,7 +18,7 @@ Features
 -   [Docker](https://www.docker.com/)
 -   [12 Factor](http://12factor.net/)
 -   Server: [Nginx](https://nginx.org/)
--   Frontend: [Vue](https://vuejs.org/) + [vue-cli](https://cli.vuejs.org/)
+-   Frontend: [Vue](https://vuejs.org/) + [vue-cli](https://cli.vuejs.org/) + [PWA](https://developers.google.com/web/progressive-web-apps/)
 -   Backend: [Django](https://www.djangoproject.com/)
 -   Database: [PostgreSQL](https://www.postgresql.org/)
 -   API: REST or GraphQL
