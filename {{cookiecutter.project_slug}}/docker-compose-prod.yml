@@ -2,7 +2,10 @@ version: '3.3'
 
 volumes:
     postgres_data: {}
+{% if cookiecutter.use_portainer == 'y' %}
     portainer_data: {}
+{% endif %}
+
 
 services:
   backend:
