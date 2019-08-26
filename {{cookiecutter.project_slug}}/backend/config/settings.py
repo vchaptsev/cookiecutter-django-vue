@@ -50,7 +50,6 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    {% if cookiecutter.api == 'GraphQL' %}'graphql_jwt.middleware.JSONWebTokenMiddleware',{% endif %}
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -230,10 +229,16 @@ REST_FRAMEWORK = {
 # Graphene
 GRAPHENE = {
     'SCHEMA': 'config.schema.schema',
+     'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
 }
 
 if DEBUG:
-    GRAPHENE['MIDDLEWARE'] = ['graphene_django.debug.DjangoDebugMiddleware']
+    GRAPHENE['MIDDLEWARE'] = [
+        'graphene_django.debug.DjangoDebugMiddleware',
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ]
 
 GRAPHQL_JWT = {
     'JWT_EXPIRATION_DELTA': timedelta(days=30),
