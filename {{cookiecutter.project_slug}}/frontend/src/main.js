@@ -21,9 +21,10 @@ Vue.config.productionTip = false
 
 {% if cookiecutter.use_sentry == 'y' %}
 // Sentry for logging frontend errors
-if (process.env.NODE_ENV === 'production') {
-  Vue.use(VueRaven, {dsn: process.env.VUE_APP_SENTRY_PUBLIC_DSN})
-}
+Vue.use(VueRaven, {
+  dsn: process.env.VUE_APP_SENTRY_PUBLIC_DSN,
+  disableReport: process.env.NODE_ENV === 'development'
+})
 {% endif %}
 
 {% if cookiecutter.analytics == 'Google Analytics' %}
