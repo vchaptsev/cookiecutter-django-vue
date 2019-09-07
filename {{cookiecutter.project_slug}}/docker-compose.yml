@@ -1,7 +1,7 @@
 version: '3.3'
 
 volumes:
-    postgres_data: {}
+    {{cookiecutter.project_name}}_data: {}
 
 services:
   backend:
@@ -28,7 +28,7 @@ services:
   postgres:
     image: postgres:10-alpine
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - {{cookiecutter.project_name}}_data:/var/lib/postgresql/data
     env_file: .env
 
 {% if cookiecutter.use_mailhog == 'y' %}
