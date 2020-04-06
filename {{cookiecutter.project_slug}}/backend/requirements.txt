@@ -38,7 +38,7 @@ simplegeneric==0.8.1
 six==1.11.0
 traitlets==4.3.2
 typed-ast==1.1.0
-urllib3==1.23
+urllib3==1.24.2
 wcwidth==0.1.7
 Werkzeug==0.14.1
 {% if cookiecutter.use_sentry == 'y' %}raven==6.9.0{% endif %}
