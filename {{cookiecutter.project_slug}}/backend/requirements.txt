@@ -43,7 +43,7 @@ wcwidth==0.1.7
 Werkzeug==0.14.1
 {% if cookiecutter.use_sentry == 'y' %}raven==6.9.0{% endif %}
 {% if cookiecutter.api == 'REST' %}
-djangorestframework==3.8.2
+djangorestframework==3.9.1
 {% elif cookiecutter.api == 'GraphQL' %}
 django-graphql-jwt==0.1.10
 graphene==2.1.3
