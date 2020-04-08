@@ -2,9 +2,6 @@ version: '3.3'
 
 volumes:
     postgres_data: {}
-{% if cookiecutter.use_portainer == 'y' %}
-    portainer_data: {}
-{% endif %}
 
 
 services:
@@ -48,15 +45,4 @@ services:
       - postgres
     volumes:
       - /tmp/backups/:/backups/
-{% endif %}
-
-{% if cookiecutter.use_portainer == 'y' %}
-  portainer:
-    image: portainer/portainer
-    ports:
-      - "9000:9000"
-    command: -H unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
 {% endif %}

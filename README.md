@@ -30,7 +30,6 @@ Optional Integrations
 
 -   Integration with [MailHog](https://github.com/mailhog/MailHog) for local email testing
 -   Integration with [Sentry](https://sentry.io/welcome/) for frontend and backend errors logging
--   Integration with [Portainer](https://portainer.io/) (management UI for docker)
 -   Integration with [Google Analytics](https://www.google.com/analytics/) or [Yandex Metrika](https://tech.yandex.ru/metrika/) for web-analytics
 -   Automatic database backups
 
@@ -64,7 +63,6 @@ Answer the prompts with your own desired options. For example:
     backups [y]: y
     ==================== INTEGRATIONS =================== [ ]:
     use_sentry [y]: y
-    use_portainer [y]: y
     use_mailhog [y]: y
     Select analytics:
     1 - Google Analytics
@@ -74,8 +72,8 @@ Answer the prompts with your own desired options. For example:
 
 Project creation will cause some odd newlines and linter errors, so I'd recommend:
 
-    $ autopep8 -r --in-place --aggressive --aggressive .
-    $ npm run lint --fix
+    $ autopep8 -r --in-place --aggressive --aggressive backend
+    $ npm i && npm run lint --fix
 
 Now you can start project with
 [docker-compose](https://docs.docker.com/compose/):

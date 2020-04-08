@@ -11,10 +11,9 @@
     "====================== GENERAL ======================": " ",
     "api": ["REST", "GraphQL"],
     "backups": "y",
-    
+
     "==================== INTEGRATIONS ===================": " ",
     "use_sentry": "y",
-    "use_portainer": "y",
     "use_mailhog": "y",
     "analytics": ["Google Analytics", "Yandex Metrika", "None"]
 }

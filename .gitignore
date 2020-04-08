@@ -55,6 +55,7 @@ node_modules/
 
 # virtual environments
 .env
+venv
 
 # User-uploaded media
 */media/
@@ -65,3 +66,6 @@ node_modules/
 
 # Webpack tracker
 webpack.json
+
+# Pyenv
+.python-version
