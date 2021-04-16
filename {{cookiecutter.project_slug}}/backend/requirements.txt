@@ -20,7 +20,6 @@ ipython-genutils==0.2.0
 jedi==0.17.2
 mccabe==0.6.1
 mypy==0.782
-parso==0.8.0
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==7.2.0
