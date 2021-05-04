@@ -9,7 +9,10 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 import environ
 from datetime import timedelta
-
+{% if cookiecutter.use_sentry == 'y' %}
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+{% endif %}
 ROOT_DIR = environ.Path(__file__) - 2
 
 # Load operating system environment variables and then prepare to use them
