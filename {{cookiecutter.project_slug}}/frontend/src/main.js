@@ -10,9 +10,12 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 import { createProvider } from '@/apollo'
 {% endif %}
 
-{% if cookiecutter.analytics == 'Google Analytics' %}import VueAnalytics from 'vue-analytics'{% endif %}
-{% if cookiecutter.analytics == 'Yandex Metrika' %}import VueYandexMetrika from 'vue-yandex-metrika'{% endif %}
-{% if cookiecutter.use_sentry == 'y' %}import VueRaven from 'vue-raven'{% endif %}
+{% if cookiecutter.analytics == 'Google Analytics' %} import VueAnalytics from 'vue-analytics'{% endif %}
+{% if cookiecutter.analytics == 'Yandex Metrika' %} import VueYandexMetrika from 'vue-yandex-metrika'{% endif %}
+{% if cookiecutter.use_sentry == 'y' %}
+import * as Sentry from "@sentry/vue"
+import { Integrations } from "@sentry/tracing";
+{% endif %}
 
 import App from '@/App.vue'
 import './registerServiceWorker'
@@ -21,10 +24,15 @@ Vue.config.productionTip = false
 
 {% if cookiecutter.use_sentry == 'y' %}
 // Sentry for logging frontend errors
-Vue.use(VueRaven, {
+Sentry.init({
+  Vue: Vue,
   dsn: process.env.VUE_APP_SENTRY_PUBLIC_DSN,
-  disableReport: process.env.NODE_ENV === 'development'
-})
+  integrations: [new Integrations.BrowserTracing()],
+  tracingOptions: {
+    trackComponents: true,
+  },
+  logError: process.env.NODE_ENV === 'development'
+});
 {% endif %}
 
 {% if cookiecutter.analytics == 'Google Analytics' %}
@@ -47,6 +55,6 @@ Vue.use(VueYandexMetrika, {
 new Vue({
   router,
   store,
-  {% if cookiecutter.api == "GraphQL" %}provide: createProvider().provide(),{% endif %}
-  render: h => h(App)
+  {% if cookiecutter.api == "GraphQL" %}provide: createProvider().provide(), {% endif %}
+render: h => h(App)
 }).$mount('#app')
