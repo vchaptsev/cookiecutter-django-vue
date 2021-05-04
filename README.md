@@ -72,8 +72,9 @@ Answer the prompts with your own desired options. For example:
 
 Project creation will cause some odd newlines and linter errors, so I'd recommend:
 
+    $ pip install autopep8
     $ autopep8 -r --in-place --aggressive --aggressive backend
-    $ npm i && npm run lint --fix
+    $ cd frontend && npm i && npm run lint --fix
 
 Now you can start project with
 [docker-compose](https://docs.docker.com/compose/):
