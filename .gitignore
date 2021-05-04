@@ -3,41 +3,14 @@
 .AppleDouble
 .LSOverride
 
+# ## Editors ##
 # SublimeText
-# cache files for sublime text
 *.tmlanguage.cache
 *.tmPreferences.cache
 *.stTheme.cache
 
 *.sublime-project
 *.sublime-workspace
-
-# sftp configuration file
-sftp-config.json
-
-# Basics
-*.py[cod]
-__pycache__
-
-# Logs
-logs
-*.log
-pip-log.txt
-npm-debug.log*
-
-# Unit test / coverage reports
-.coverage
-.tox
-nosetests.xml
-htmlcov
-
-# Translations
-*.mo
-*.pot
-
-# Webpack
-webpack-stats.json
-dist/
 
 # Pycharm
 .idea/*
@@ -47,25 +20,59 @@ dist/
 *.swp
 *.swo
 
+# VScode
+.vscode
+
+# ## NodeJS & Webpack ##
 # npm
 node_modules/
 
-# Compass
-.sass-cache
+# Webpack
+webpack-stats.json
+dist/
+
+# Webpack tracker
+webpack.json
+
+# ## Python ##
+# Basics
+*.py[cod]
+__pycache__
 
 # virtual environments
 .env
 venv
 
+# Pyenv
+.python-version
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+htmlcov
+
+# ## Django ##
+# Translations
+*.mo
+*.pot
+
 # User-uploaded media
 */media/
 */staticfiles/
 
+# ## Other things
+# sftp configuration file
+sftp-config.json
+
+# Logs
+logs
+*.log
+pip-log.txt
+npm-debug.log*
+
+# Compass
+.sass-cache
+
 # Cache
 .cache/
-
-# Webpack tracker
-webpack.json
-
-# Pyenv
-.python-version
